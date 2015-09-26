@@ -1,0 +1,67 @@
+﻿@{
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div style="margin-top:50px ; margin-bottom:50px" class="row">
+
+        <div class="col-md-7"> </div>
+
+        <div class="col-md-4" style="margin-top:10px; background-color:#D4D8D1">
+            <h3 style="margin-left: 55px; margin-bottom: 30px; color: #577492">Register Your Account</h3>
+
+            <fieldset style="margin-left:25px ; margin-right:25px ; margin-bottom:25px">
+
+                <div class="form-group has-error">
+                    <input class="form-control input-lg" placeholder="E-mail Address" name="email" id="eId" type="text">
+                </div>
+                <div class="form-group has-success">
+                    <input class="form-control input-lg" placeholder="Password" name="password" id="pId" type="password">
+                </div>
+                <input class="btn btn-lg btn-primary btn-block" value="Sign in" id="bId" type="button">
+
+            </fieldset>
+
+            @*@Scripts.Render("~/bundles/jquery")*@
+            <script>
+
+                $(document).ready(function () {
+
+                    $('#bId').click(function () {
+
+                        var email = $('#eId').val();
+                        var password = $('#pId').val();
+
+                        $.getJSON("/Home/validateUser?email=" + email + "&" + "pwd=" + password, function (data) {
+                            
+                            if (data == 0) {
+                                $('#errMsg').empty();
+                                $('#pId').val("");
+                                $('#eId').val("");
+                                $('#errMsg').append('<p> Invalid UserName or Password. Try again </p>');
+                            }
+                            else {
+                                $('#errMsg').empty();
+                                $('#LNB').empty();
+                                $('#LNB').show();
+                                $('#LNB').load('navBar1');
+                                $('#sideBar').hide();
+                                $('#userM').empty();
+                                $('#userM').show();
+                                $('#userM').load('userProfile/' + data);
+                            }
+                        });
+
+                    });
+
+                });
+            </script>
+
+        </div>
+        <div class="col-md-1"> </div>
+
+    </div>
+
+<div id="errMsg" style="color:#577492 ; margin-left:500px ; font-size:medium">
+
+</div>

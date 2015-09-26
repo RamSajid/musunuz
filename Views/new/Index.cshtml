@@ -1,0 +1,262 @@
+﻿@{
+    List<FYP1.City> city = ViewBag.cList;
+    List<FYP1.Market> market = ViewBag.mList;
+    List<FYP1.Category> cat = ViewBag.catList;
+    List<FYP1.subCategory> sCat = ViewBag.sList;
+    Session["clicked"] = null;
+    int ID = 0;
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<div class="row">
+
+    <div class="col-md-3">
+
+        <div style="margin-left:10px">
+            </div>
+        </div>
+    </div>
+
+
+            <div class="row">
+
+                <div class="col-md-3">
+
+                    <div style="margin-left:10px">
+
+                        <div id="dC" style="margin-top:15px">
+                            <a href="#" style="color:black; font-size:large ; font-weight:600"> Cities </a>
+                            <div id="hCity" style="margin-left:5px">
+                                @for (int i = 0; i < city.Count && i < 8; i++)
+                    {
+                    <a id="hCity" style="color:black"> @city.ElementAt(i).cityName </a> <br />
+                    }
+
+
+                            </div>
+                            <div id="dCity" style="margin-left:5px">
+
+                                @for (int i = 0; i < city.Count; i++)
+                    {
+                                    string cc = city.ElementAt(i).cityId + "t" ;
+                    <a id="@cc" style="color:black"> @city.ElementAt(i).cityName </a> <br />
+                    <script>
+                            $(document).ready(function () {
+                                $('#dCity').click(function () {
+                                $('#@cc').click(function () {
+                                $('#loadPage').empty();
+                                $('#loadPage').show();
+                                $('#loadPage').load('city/@city.ElementAt(i).cityId'); debugger
+                                    });
+                                });
+                            });
+                    </script>
+                    }
+                            </div>
+
+                        </div>
+
+                        <div id="dC1" style="margin-top:15px">
+                            <a href="#" style="color: black; font-size:large ; font-weight:600"> Categories </a>
+
+                            <div id="hCat">
+
+                                <ul style="list-style:none">
+                                    @for (int i = 0; i < cat.Count; i++)
+                        {
+                        <li class="menu-item dropdown">
+                            @if (sCat.Count >= 1)
+                                {
+                                <a class="dropdown-toggle" data-toggle="dropdown" style="color: #312b2b"> @cat.ElementAt(i).categoryName <b class="caret"></b></a>
+
+                                <ul class="dropdown-menu" style="list-style:none">
+                                    @for (int j = 0; j < sCat.Count; j++)
+                                        {
+                                            if (cat.ElementAt(i).categoryId == sCat.ElementAt(j).categoryId)
+                                            {
+                                                string ss = sCat.ElementAt(j).subCategoryId + "c";
+                                        <li>
+                                            <a id="@ss"> @sCat.ElementAt(j).subCategoryName </a>
+                                            <script>
+                                                            $(document).ready(function () {
+                                                               $('#hCat').click(function () {
+                                                                    $('#@ss').click(function () {
+                                                                        $('#loadPage').empty();
+                                                                        $('#loadPage').show();
+                                                                        $('#loadPage').load('category/@sCat.ElementAt(j).subCategoryId');
+                                                                    });
+                                                               });
+
+                                                        });
+                                            </script>
+                                        </li>
+                                            }
+                                        }
+                                </ul>
+                                }
+
+                        </li>
+                        }
+                                </ul>
+
+
+                            </div>
+
+                        </div>
+
+                        <div id="dM" style="margin-top:15px">
+                            <a href="#" style="color:black; font-size:large ; font-weight:600"> Markets</a>
+                            <div id="hMar" style="margin-left:15px">
+
+                                @for (int i = 0; i < market.Count && i < 8; i++)
+                    {
+                    <a id="hMar" style="color:black"> @market.ElementAt(i).marketName </a> <br />
+                    }
+
+                            </div>
+                            <div id="dMar" style="margin-left:15px">
+                                @for (int i = 0; i < market.Count; i++)
+                    {
+                        string ii = @market.ElementAt(i).marketId + "m";
+                    <a id="@ii" style="color:black"> @market.ElementAt(i).marketName </a>
+                    <br />
+                    <script>
+                        $(document).ready(function () {
+                               $('#dMar').click(function () {
+                                $('#@ii').click(function () {
+                                    $('#loadPage').empty();
+                                    $('#loadPage').show();
+                                    $('#loadPage').load('market/@market.ElementAt(i).marketId'); debugger
+
+                                    });
+                               });
+
+                            });
+                        @*$(document).ready(function () {
+                            $('#@market.ElementAt(i).marketId').click(function () {
+                                @ID = @market.ElementAt(i).marketId ;
+                                @Session["clicked"] = "city" ;
+                            });
+                        });*@
+                    </script>
+                    }
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-8">
+                    <div id="loadPage">
+
+                    </div>
+                    <div id="loadPage1" style="margin-top:30px">
+                    </div>
+                </div>
+            </div>
+
+
+            @Scripts.Render("~/bundles/jquery")
+            <script>
+
+                $(document).ready(function () {
+
+                    $('#dCity').hide();
+                    $('#dMar').hide();
+
+                    $('#hCity').show();
+                    $('#hCat').show();
+                    $('#hMar').show();
+
+
+                    $('#dC').mouseover(function () {
+                        $('#hCity').hide();
+                        $('#dCity').show();
+                    });
+
+                    $('#dC').mouseout(function () {
+                        $('#dCity').hide();
+                        $('#hCity').show();
+                    });
+
+                    $('#dCity').mouseover(function () {
+                        $('#dCity').show();
+                        $('#hCity').hide();
+                    });
+
+                    $('#dCity').mouseout(function () {
+                        $('#dCity').hide();
+                        $('#hCity').show();
+                    });
+
+
+
+
+
+
+
+                    $('#dM').mouseover(function () {
+                        $('#hMar').hide();
+                        $('#dMar').show();
+                    });
+
+                    $('#dM').mouseout(function () {
+                        $('#dMar').hide();
+                        $('#hMar').show();
+                    });
+
+                    $('#dMar').mouseover(function () {
+                        $('#dMar').show();
+                        $('#hMar').hide();
+                    });
+
+                    $('#dMar').mouseout(function () {
+                        $('#dMar').hide();
+                        $('#hMar').show();
+                    });
+
+
+                });
+
+            </script>
+
+
+@if(Session["clicked"].ToString() == "city" )
+{
+    Session["clicked"] = null ;
+    <script>
+        $(document).ready(function () {
+            $('#loadPage').empty();
+            $('#loadPage').show();
+            $('#loadPage').load('city/@ID');            
+        });
+    </script>
+}
+else if(Session["clicked"].ToString() == "sCat")
+{
+    Session["clicked"] = null ;
+    <script>
+        $(document).ready(function () {
+            $('#loadPage').empty();
+            $('#loadPage').show();
+            $('#loadPage').load('category/@ID');            
+        });
+    </script>
+}
+else if(Session["clicked"].ToString() == "market")
+{
+    Session["clicked"] = null ;
+    <script>
+        $(document).ready(function () {
+            $('#loadPage').empty();
+            $('#loadPage').show();
+            $('#loadPage').load('market/@ID');            
+        });
+    </script>
+}

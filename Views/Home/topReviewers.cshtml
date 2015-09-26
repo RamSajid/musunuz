@@ -1,0 +1,50 @@
+﻿@{
+    //Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<div id="mDiv" style="align-content:center">
+    <h1 style=" font-weight: 600; color: #577492;"> Top Reviewers </h1>
+    <div class="row">
+        <div class="col-md-3" style=" color: #67655D; font-size: large; font-weight: 500">
+            Username
+        </div>
+        <div class="col-md-3" style=" color: #67655D; font-size: large; font-weight: 500">
+            Total Reviews
+        </div>
+        <div class="col-md-4" style=" color: #67655D; font-size: large; font-weight: 500">
+            Highest Rated Stores
+        </div>
+    </div>
+    @for (var i = 0; i < 5; i++)
+    {
+        <div class="row">
+            <div class="col-md-3">
+                <a href="~/Home/othersProfile" style="color:black"> Person @i </a>
+                <br />
+            </div>
+            <div class="col-md-3">
+                total reviews
+            </div>
+            <div class="col-md-3">
+                <ul>
+                    @for (var q = 0; q < 3; q++)
+                    {
+                        <li>
+                            <a href="~/Home/store" style="color:black"> store @q </a> <br />
+                            <a href="~/Home/market" style="font-size:small ; color:black"> Market Name </a>
+                            , <a href="~/Home/city" style="font-size:small ; color:black"> City </a> <br />
+                            <b style="color: #e1a109; "> Rating : @i/5 </b>
+                            <br />
+
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+  
+    }
+
+
+</div>
+    </div>

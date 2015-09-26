@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>newImage</title>
+    <script src="~/jsp/jquery-2.1.4.min.js"></script>
+    <link href="~/bootStrap/bootstrap.css" rel="stylesheet" />
+    <script src="~/bootStrap/bootstrap.js"></script>
+</head>
+<body>
+    <div>
+        <form method="post" action="~/Forms/editUserImage" enctype="multipart/form-data">
+            Upload New Image : 
+            <input type="file" name="newImage"/>
+            <input type="submit" class="btn btn-warning bgcolor" value="Upload" style="margin-left:350px" />
+        </form>
+    </div>
+</body>
+</html>

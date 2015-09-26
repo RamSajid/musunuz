@@ -1,0 +1,80 @@
+﻿@{
+    Store store = ViewBag.store;
+    List<Product> product = ViewBag.pList;
+    //Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+
+@for (int j = 0; j < product.Count; j++)
+{
+    int pI = product.ElementAt(j).productId;
+    int sI = product.ElementAt(j).subCategory.subCategoryId;
+    string pIp = product.ElementAt(j).productId + "pIp";
+    string pIpp = product.ElementAt(j).productId + "pIpp";
+    string pIppp = product.ElementAt(j).productId + "pIppp";
+    string pIpppp = product.ElementAt(j).productId + "pIpppp";
+    string sIs = product.ElementAt(j).subCategory.subCategoryId + "sIs";
+    <div class="col-md-3">
+        <a id="@pIp"> <img src="@product.ElementAt(j).productPic" width="150" height="150" /> </a><br />
+        <a id="@pIpp" style="color:black ; font-size:small"> @product.ElementAt(j).productTitle </a> <br />
+        <a id="@sIs" style="color:black ; font-size:small"> @product.ElementAt(j).subCategory.subCategoryName </a> <br />
+        <a id="@pIppp" style="color:black ; font-size:small"> @product.ElementAt(j).totalReviews Reviews </a>
+        <br />
+        <a id="@pIpppp" style="font-size:x-small"> write a review </a>
+        <br />
+
+        <script>
+                $(document).ready(function () {
+                    $('#@pIp').click(function () {
+                            $('#sDiv').hide();
+                            $('#loadPageS').empty();
+                            $('#loadPageS').show();
+                            $('#loadPageS').load('product/@pI');
+                    });
+
+                    $('#@pIpp').click(function () {
+                        $('#sDiv').hide();
+                        $('#loadPageS').empty();
+                        $('#loadPageS').show();
+                        $('#loadPageS').load('product/@pI');
+                    });
+
+                    $('#@pIppp').click(function () {
+                        $('#sDiv').hide();
+                        $('#loadPageS').empty();
+                        $('#loadPageS').show();
+                        $('#loadPageS').load('product/@pI');
+                    });
+
+                    $('#@pIpppp').click(function () {
+                        $('#sDiv').hide();
+                        $('#loadPageS').empty();
+                        $('#loadPageS').show();
+                        $('#loadPageS').load('product/@pI');
+                    });
+
+                    $('#@sIs').click(function () {
+                        $('#sDiv').hide();
+                        $('#loadPageS').empty();
+                        $('#loadPageS').show();
+                        $('#loadPageS').load('category/@sI');
+                    });
+
+    });
+        </script>
+
+        <label style="text-align:center">
+            @for (var s1 = 0; s1 < product.ElementAt(j).productRating; s1++)
+            {
+                <img height="20" width="20" src="~/img/star.png" />
+            }
+            @for (var s2 = product.ElementAt(j).productRating; s2 < 5; s2++)
+            {
+                <img height="20" width="20" src="~/img/hollowStar.png" />
+            }
+            <br /> <br /> <br />
+        </label><br />
+    </div>
+
+}

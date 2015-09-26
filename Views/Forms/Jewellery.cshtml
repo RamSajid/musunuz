@@ -1,0 +1,357 @@
+﻿@{
+    int cId = ViewBag.cIds;
+    int sCId = ViewBag.id;
+    int stId = ViewBag.sIds;
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Jewellery</title>
+    <script src="~/jQuery/jquery-2.1.4.js"></script>
+    <link href="~/Bootstrap/bootstrap.css" rel="stylesheet" />
+    <script src="~/Bootstrap/bootstrap.js"></script>
+    <script type="text/javascript">
+        function HandleBrowseClick() {
+            var fileinput = document.getElementById("browse1");
+            fileinput.click();
+        }
+        function HandleBrowseClick() {
+            var fileinput = document.getElementById("browse2");
+            fileinput.click();
+        }
+        function HandleBrowseClick() {
+            var fileinput = document.getElementById("browse3");
+            fileinput.click();
+        }
+        function HandleBrowseClick() {
+            var fileinput = document.getElementById("browse4");
+            fileinput.click();
+        }
+        function Handlechange() {
+            var fileinput = document.getElementById("browse");
+
+        }
+    </script>
+    <style>
+        #top-buffer { margin-top:20px; }
+        .margin-top { margin-top:20px; }
+        .margin-left { margin-left:5px; }
+        .margin-top10 { margin-top:10px; }
+        .star-six {
+	width: 0;
+	height: 0;
+	border-left: 25px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 40px solid red;
+	position: relative;
+}
+        .circle {
+	width: 100px;
+	height: 100px;
+	background: red;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+    </style>
+</head>
+<body style="background-color:#fff">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" style="background-color:lightpink">
+                <div class="row" style="background-color:white">
+                    <div class="col-md-12">
+                        <h1 style="color:lightblue">S<small style="color:lightgreen">s</small>A<small style="color:lightgreen">r</small>R</h1>
+                        
+                    </div>
+                </div>
+                <div class="row" style="border:solid;border-color:darkorange;background-color:white">
+                    
+                    <div class="col-md-12" style="background-color:darkorange">
+                        <h4>Create your Listing</h4>
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div>
+                        <div class="col-md-10" id="top-buffer" style="background-color:lightgrey;border-radius:5px"><h5>Catgory selected : <b>Jewellery....</b></h5></div></div>
+                        <div class="col-md-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10 margin-top" style="background-color:purple;border-radius:5px;color:white"><h5 class="circle" style="display:inline"><b style="font-size:30px">1</b></h5><h5><b>Create a descriptive Title for your item</b></h5></div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <form method="post" enctype="multipart/form-data"  action="~/Forms/Jewellery">
+
+                        <div class="row">
+
+                            <div class="col-md-1"></div>
+                            <div id="uIH" class="col-md-2" style="background-color:lightgray;border-radius:2px;border-color:darkgray; color:black">
+                                <input class="form-control" type="text" name="storeID" value="@stId" id="ssID">
+                                <input class="form-control" type="text" name="catID" value="@cId" id="ccID">
+                                <input class="form-control" type="text" name="subCatID" value="@sCId" id="scID">
+                            </div>
+
+                            <script>
+                                $(document).ready(function () {
+                                    $('#uIH').hide();
+                                });
+                            </script>
+
+                            <div class="col-md-1"></div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 margin-top10" style="background-color:lightgray;border-radius:2px;border-color:darkgray"><br />
+                                <input class="form-control" type="text" name=data.Title placeholder="" id="id-of-input">
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                    
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 margin-top" style="background-color:purple;border-radius:5px;color:white"><h5 class="circle" style="display:inline"><b style="font-size:30px">2</b></h5><h5><b>Bring your item to life with pictures</b></h5></div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-7 margin-top10" style="background-color:lightgray;border:thick;border-color:greenyellow">
+                                <p>Click <strong>Add a photo</strong> and selct photo you want to upload</p>
+                                <div>
+                                    <div>
+                                        <br /><input type="file" class="btn btn-primary" id="fileID1" name="Photo1" value="upload photo" />
+                                        <h5 class="text-center">(FREE)</h5>
+                                    </div>
+                                    <div>
+                                        <br /><input type="file" class="btn btn-primary" id="fileID2" name="Photo1" value="upload photo" />
+                                        <h5 class="text-center">(FREE)</h5>
+                                    </div>
+                                    <div>
+                                        <br /><input type="file" class="btn btn-primary" id="fileID3" name="Photo1" value="upload photo" />
+                                        <h5 class="text-center">(FREE)</h5>
+                                    </div>
+                                    <div>
+                                        <br /><input type="file" class="btn btn-primary" id="fileID4" name="Photo1" value="upload photo" />
+                                        <h5 class="text-center">(FREE)</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 margin-top10 margin-left" style="background-color:lightgray;border-radius:3px;border:thick;border-color:greenyellow">
+                                <h4 style="background-color:darkgrey">Tips</h4>
+                                <p>Your pictures in this<br /> category are on us and will <br /> appear on your Gallery<br /> Picture, a small version of<br /> your picture appears in <br />search results. With<br /> Gallery Plus, buyers can <br />also see larger pictures in<br /> search results.</p>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 margin-top" style="background-color:pink;border-radius:5px;color:white"><h5 class="circle" style="display:inline"><b style="font-size:30px">3</b></h5><h5><b>Describe the items you are selling</b></h5></div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 margin-top10" style="background-color:lightgray;border-radius:3px">
+                                <br /><p>Buyers often refine their search using these item specifics. If you don't provide these details here, your<br /> listing may not appear in their search results.</p>
+                                <h5><b>Condition</b></h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select class="selectpicker" name=data.Condition>
+                                            <option>-</option>
+                                            <option>New</option>
+                                            <option>Used</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <h5><b>MPN</b></h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select class="selectpicker" name=data.MPN >
+                                            <option></option>
+                                        
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <h5><b>Brand</b></h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select class="selectpicker" name=data.Brand >
+                                            <option></option>
+                                            <option>Body Candy</option>
+                                            <option>Body Jewellery</option>
+                                            <option>Body Sparkles</option>
+                                            <option>Divani</option>
+                                            <option>Fresh Trends</option>
+                                            <option>Head Cases</option>
+                                            <option>Metal Mafia</option>
+                                            <option>Mall Goodies</option>
+                                            <option>NLB</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <h5><b>Metal</b></h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select class="selectpicker" name=data.Metal>
+                                            <option></option>
+                                            <option>Aluminium</option>
+                                            <option>Brass</option>
+                                            <option>Copper</option>
+                                            <option>Zinc</option>
+                                            <option>Platinum</option>
+                                            <option>Platinum Plated</option>
+                                            <option>Rose Gold</option>
+                                            <option>Rose Gold Filled</option>
+                                            <option>Rose Gold Plated</option>
+                                            <option>White Gold</option>
+                                            <option>White Gold Filled</option>
+                                            <option>White Gold Plated</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <h5><b>Material</b></h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select class="selectpicker" name=data.Material >
+                                            <option></option>
+                                            <option>Bone</option>  
+                                            <option>Ceramic</option>  
+                                            <option>Enamel</option>
+                                            <option>Feather</option>
+                                            <option>Glass</option>
+                                            <option>Hemp</option>
+                                            <option>Leather</option>
+                                            <option>Lucite</option>
+                                            <option>Plastic</option>
+                                            <option>Glass</option>
+                                            <option>Resin</option>
+                                            <option>Rubber</option>
+                                            <option>Stones</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            
+                                <h5><b>Body Area</b></h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label><input name=data.BodyArea type="checkbox" />Ear</label><br />
+                                                <label><input name=data.BodyArea type="checkbox" />Lip</label><br />
+                                                <label><input name=data.BodyArea type="checkbox" />Nose</label><br />
+                                                <label><input name=data.BodyArea type="checkbox" />Universal</label><br />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label><input name=data.BodyArea type="checkbox" />Navel</label><br />
+                                                <label><input name=data.BodyArea type="checkbox" />Wrist</label><br />
+                                                <label><input name=data.BodyArea type="checkbox" />Labret</label><br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <h5><b>Country of manufacturing</b></h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select class="selectpicker"  name=data.Country>
+                                            <option></option>
+                                            <option>Pakistan</option>
+                                            <option>India</option>
+                                            <option>Australia</option>
+                                            <option>USA</option>
+                                            <option>Englad</option>
+                                            <option>China</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <h5><b>Color</b></h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select class="selectpicker" name=data.Color >
+                                            <option></option>
+                                            <option>Bheig</option>
+                                            <option>Black</option>
+                                            <option>Blue</option>
+                                            <option>Brown</option>
+                                            <option>Gold</option>
+                                            <option>Grey</option>
+                                            <option>Green</option>
+                                            <option>Ivory</option>
+                                            <option>Multi-color</option>
+                                            <option>Grey</option>
+                                            <option>Orange</option>
+                                            <option>Pink</option>
+                                            <option>Purple</option>
+                                            <option>Red</option>
+                                            <option>Silver</option>
+                                            <option>White</option>
+                                            <option>Yellow</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br />
+                                <div style="background-color:darkgray;width:100%;height:10px" ></div><br />
+                            </div> 
+                            <div class="col-md-1"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-7 margin-top10" style="background-color:orange;border:thick;border-color:greenyellow">
+                                <p><strong>Add Detail</strong></p>
+                                <textarea class="form-control" name=data.Detail rows="16" placeholder ="Type here..."></textarea>
+                            </div>
+                            <div class="col-md-3 margin-top10 margin-left" style="background-color:orange;border-radius:6px;border:thick;border-color:greenyellow">
+                                <h4 style="background-color:orangered">Tips</h4>
+                                <p>Help buyers find what they're looking for by providing detailed, easy- to- read information such as the following:</p>
+                                <ul>
+                                    <li>Color, size, and measurements.</li>
+                                    <li>Item condition details.</li>
+                                    <li>Notable features or a good story associated with the item.</li>
+                                    <li>Whether you allow returns.</li>
+                                    <li>Be sure to check your spelling and grammar.</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 margin-top" style="background-color:darksalmon;border-radius:5px;color:white"><h5 class="circle" style="display:inline"><b style="font-size:30px">4</b></h5><h5><b>Set a Price & Shipping Details</b></h5></div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 margin-top10" style="background-color:lightgray;border-radius:5px;color:black"><input type="text" name=data.Price placeholder="Enter price in $" /></div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <br /><br />
+                        <input type="submit" class="btn btn-danger bgcolor pull-right" value="Submit" style="margin-right:10px"/><br /><br />
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div><br /><br /><br />
+    </div>
+</body>
+</html>

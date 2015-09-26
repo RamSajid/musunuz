@@ -1,0 +1,219 @@
+﻿@*@using FYP1.Models
+@model List<FYP1.Models.City>*@
+
+@{
+    List<City> city = ViewBag.cList;
+    List<Market> market = ViewBag.mList;
+    List<Category> cat = ViewBag.catList;
+    List<subCategory> sCat = ViewBag.sList;
+    Layout = null;
+}
+
+
+<div style="margin-left:10px">
+    <div id="dC" style="margin-top:15px" >
+        <a href="#" style="color:black; font-size:large ; font-weight:600"> Cities </a>
+        <div id="hCity" style="margin-left:5px">
+            @for (int i = 0; i<city.Count && i<8 ; i++)
+            {
+                <a id="hCity" style="color:black"> @city.ElementAt(i).cityName </a> <br />
+                @Scripts.Render("~/bundles/jquery")
+            }
+
+
+        </div>
+        <div id="dCity" style="margin-left:5px">
+
+            @for (int i = 0; i<city.Count ; i++)
+            {
+                <a id="dCity1" href="~/Home/city/@city.ElementAt(i).cityId" style="color:black"> @city.ElementAt(i).cityName </a> <br />
+                <script>
+                $(document).ready(function () {        
+                    $('#dCity1').click(function () {
+                        Session["sBCity"] = city.ElementAt(i).cityId ;
+                    });
+                });
+                </script>
+
+            }
+
+        </div>
+
+    </div>
+
+    <div id="dC1" style="margin-top:15px">
+        <a href="#" style="color: black; font-size:large ; font-weight:600"> Categories </a>
+
+        <div id="hCat">
+
+            <ul style="list-style:none">
+                    @for (int i = 0; i < cat.Count; i++)
+                    {
+                        <li class="menu-item dropdown">
+                            @if(sCat.Count >= 1)
+                            {
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #312b2b"> @cat.ElementAt(i).categoryName <b class="caret"></b></a>
+
+                            <ul class="dropdown-menu" style="list-style:none">
+                                @for (int j = 0; j < sCat.Count; j++)
+                                {
+                                    if (cat.ElementAt(i).categoryId == sCat.ElementAt(j).categoryId)
+                                    {
+                                         <li> <a href="~/Home/category/@sCat.ElementAt(j).subCategoryId"> @sCat.ElementAt(j).subCategoryName </a> </li>   
+                                    }
+                                }
+                             </ul>
+                            }
+                            else
+                            {
+                                <a href="~/Home/category/@cat.ElementAt(i).categoryId" style="color: #312b2b"> @cat.ElementAt(i).categoryName </a>
+                            }
+                            
+                        </li>
+                    }
+                </ul>
+        
+
+        </div>
+        <div id="dCat">
+
+            <ul style="list-style:none">
+                @for (int i = 0; i < cat.Count; i++)
+                {
+                    <li class="menu-item dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #312b2b"> @cat.ElementAt(i).categoryName <b class="caret"></b></a>
+                        @if (sCat.Count >= 1)
+                        {
+                            <ul class="dropdown-menu" style="list-style:none">
+                                @for (int j = 0; j < sCat.Count; j++)
+                                {
+                                    if (cat.ElementAt(i).categoryId == sCat.ElementAt(j).categoryId)
+                                    {
+                                        <li> <a href="~/Home/category/@sCat.ElementAt(j).subCategoryId"> @sCat.ElementAt(j).subCategoryName </a> </li>
+                                    }
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <a href="~/Home/category/@cat.ElementAt(i).categoryId" style="color: #312b2b"> @cat.ElementAt(i).categoryName </a>
+                        }
+
+                    </li>
+                }
+            </ul>
+
+
+        </div>
+
+    </div>
+
+    <div id="dM" style="margin-top:15px">
+        <a href="#" style="color:black; font-size:large ; font-weight:600"> Markets</a>
+        <div id="hMar" style="margin-left:15px">
+
+            @for (int i = 0; i < market.Count && i < 8; i++)
+            {
+                <a id="hMar" href="~/Home/market/@market.ElementAt(i).marketId" style="color:black"> @market.ElementAt(i).marketName </a> <br />
+            }
+
+        </div>
+        <div id="dMar" style="margin-left:15px">
+
+            @for (int i = 0; i < market.Count; i++)
+            {
+                <a id="dMar" href="~/Home/market/@market.ElementAt(i).marketId" style="color:black"> @market.ElementAt(i).marketName </a> <br />
+            }
+
+
+        </div>
+
+    </div>
+</div>
+
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+
+    $(document).ready(function () {
+
+        $('#dCity').hide();
+        $('#dCat').hide();
+        $('#dMar').hide();
+
+        $('#hCity').show();
+        $('#hCat').show();
+        $('#hMar').show();
+
+
+        $('#dC').mouseover(function () {
+            $('#hCity').hide();
+            $('#dCity').show();
+        });
+
+        $('#dC').mouseout(function () {
+            $('#dCity').hide();
+            $('#hCity').show();
+        });
+
+        $('#dCity').mouseover(function () {
+            $('#dCity').show();
+            $('#hCity').hide();
+        });
+
+        $('#dCity').mouseout(function () {
+            $('#dCity').hide();
+            $('#hCity').show();
+        });
+
+
+
+
+
+        $('#dC1').mouseover(function () {
+            $('#hCat').hide();
+            $('#dCat').show();
+        });
+
+        $('#dC1').mouseout(function () {
+            $('#dCat').hide();
+            $('#hCat').show();
+        });
+
+        $('#dCat').mouseover(function () {
+            $('#dCat').show();
+            $('#hCat').hide();
+        });
+
+        $('#dCat').mouseout(function () {
+            $('#dCat').hide();
+            $('#hCat').show();
+        });
+
+
+
+
+        $('#dM').mouseover(function () {
+            $('#hMar').hide();
+            $('#dMar').show();
+        });
+
+        $('#dM').mouseout(function () {
+            $('#dMar').hide();
+            $('#hMar').show();
+        });
+
+        $('#dMar').mouseover(function () {
+            $('#dMar').show();
+            $('#hMar').hide();
+        });
+
+        $('#dMar').mouseout(function () {
+            $('#dMar').hide();
+            $('#hMar').show();
+        });
+
+
+    });
+
+</script>

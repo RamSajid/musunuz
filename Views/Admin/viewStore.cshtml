@@ -1,0 +1,194 @@
+﻿
+
+@{
+    Store store = ViewBag.store;
+    List<Product> product = ViewBag.pList;
+    merchantStore mr = ViewBag.mer;
+    int uId = mr.User.userId;
+    int sId = store.storeId;
+    String uS = uId + "n" + sId;
+}
+
+
+    <div id="loadPageS">
+    </div>
+
+    <div id="sDiv" style="margin-top:8%">
+        <img src="@store.storePic" height="300" width="800" />
+
+        <div>
+            <h3 style="color: #577492">
+                @store.storeName
+                @if (@store.verified_unverified == 1)
+                {
+                    <img height="20" width="20" src="~/img/verified.jpg" style="margin-left:10px" />
+                }
+                <a id="delSt" style="margin-left:200px; font-size:small"> Delete Store </a>
+                @*@Scripts.Render("~/bundles/jquery")*@
+                <script>
+
+    $(document).ready(function () {
+
+        $('#delSt').click(function () {
+
+            $.getJSON("/Admin/deleteStore?s=@store.storeId" , function (data) {
+                                if (data == 0) {
+                                $('#sideBar').hide();
+                                $('#userM').empty();
+                                $('#userM').show();
+                                alert(@uId);
+                                $('#userM').load('userProfile/@uId');
+                                }
+                            });
+
+                        });
+
+                    });
+                </script>
+
+            </h3>
+            <p>
+                <div class="row">
+                    <div class="col-md-6">
+                <b style="color: #67655D"> Address :  </b> @store.storeAddress <br />
+                <b style="color: #67655D"> Market :  </b> @store.Market.marketName <br />
+                <b style="color: #67655D"> City :  </b> @store.Market.City.cityName <br />
+                <b style="color: #67655D"> Rating :  </b> @store.storeRating /5
+            </div>
+                    <div class="col-md-4">
+                        <img src="@store.visitingCardPic" height="120" width="120" />
+                        </div>
+                    </div>
+            </p>
+            <p> @store.storeDescription </p>
+
+
+        </div>
+
+
+        <h3 style="color: #577492">Feaured Products</h3>
+        <span class="col-md-9">
+
+        </span>
+        <div class="col-md-3" style="font-size: small; margin-top: 10px ; margin-bottom:30px">
+            <br />
+
+            <br />
+
+
+        </div>
+
+
+
+        <div class="row" id="oByDiv">
+            @for (int j = 0; j < product.Count; j++)
+            {
+                int pI = product.ElementAt(j).productId;
+                int sI = product.ElementAt(j).subCategory.subCategoryId;
+                string pIp = product.ElementAt(j).productId + "pIp";
+                string pIpp = product.ElementAt(j).productId + "pIpp";
+                string pIppp = product.ElementAt(j).productId + "pIppp";
+                <div class="col-md-3">
+                    <a id="@pIp"> <img src="@product.ElementAt(j).productPic" width="150" height="150" /> </a><br />
+                    <a id="@pIpp" style="color:black ; font-size:small"> @product.ElementAt(j).productTitle </a> <br />
+                    <a style="color:black ; font-size:small"> @product.ElementAt(j).subCategory.subCategoryName </a> <br />
+                    <a id="@pIppp" style="color:black ; font-size:small"> @product.ElementAt(j).totalReviews Reviews </a>
+                    <br />
+
+                    <script>
+                    $(document).ready(function () {
+                        $('#@pIp').click(function () {
+                            $('#sDiv').hide();
+                            $('#loadPageS').empty();
+                            $('#loadPageS').show();
+                            $('#loadPageS').load('/Admin/viewProduct/@pI');
+                        });
+
+                        $('#@pIpp').click(function () {
+                            $('#sDiv').hide();
+                            $('#loadPageS').empty();
+                            $('#loadPageS').show();
+                            $('#loadPageS').load('/Admin/viewProduct/@pI');
+                        });
+
+                        $('#@pIppp').click(function () {
+                            $('#sDiv').hide();
+                            $('#loadPageS').empty();
+                            $('#loadPageS').show();
+                            $('#loadPageS').load('/Admin/viewProduct/@pI');
+                        });
+
+                    });
+                    </script>
+
+                    <label style="text-align:center">
+                        @for (var s1 = 0; s1 < product.ElementAt(j).productRating; s1++)
+                    {
+                <img height="20" width="20" src="~/img/star.png" />
+                    }
+                        @for (var s2 = product.ElementAt(j).productRating; s2 < 5; s2++)
+                    {
+                <img height="20" width="20" src="~/img/hollowStar.png" />
+                    }
+                    </label><br />
+                    <a id="delS"> Delete Product </a>
+
+                    @*@Scripts.Render("~/bundles/jquery")*@
+                    <script>
+
+    $(document).ready(function () {
+
+        $('#delS').click(function () {
+
+            $.getJSON("/Admin/deleteProduct?sId=@product.ElementAt(j).productId" , function (data) {
+                                if (data == 0) {
+                                    $('#sideBar').show();
+                                    $('#loadPage').empty();
+                                    $('#loadPage').show();
+                                    $('#loadPage').load('/Admin/viewStore/@store.storeId');
+                                }
+                            });
+
+                        });
+                    });
+                    </script>
+
+                </div>
+
+            }
+            <div class="col-md-3">
+                <a > <img id="addNewProd" src="~/img/add.jpg" width="150" height="150" /> </a><br />
+                <br />
+                <script>
+            $(document).ready(function () {
+
+                $('#addNewProd').click(function () {
+                    $('#sideBar').hide();
+                    $('#userM').empty();
+                    $('#userM').show();
+                    $('#userM').load('/Admin/selectCat/@sId');
+                });
+            });
+                </script>
+
+            </div>
+
+        </div>
+
+        <div>
+
+        </div>
+
+        <div id="loadRev">
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('#loadRev').empty();
+                $('#loadRev').show();
+                $('#loadRev').load('/Home/storeRev/@store.storeId');
+
+            });
+        </script>
+
+    </div>
+

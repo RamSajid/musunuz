@@ -1,0 +1,138 @@
+﻿
+@{
+    int usId = 0;
+    if(Session["userIn"] != null)
+    {
+        User u = (User)(Session["userIn"]);
+        usId = u.userId;   
+    }
+
+    List<TagStore> tL = ViewBag.tagList;
+    int id = ViewBag.tId;
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="row" style="margin-top:15%">
+        
+        <div class="col-md-3" style="margin-top:2%">
+            <h3 style="color: #577492"> Tags Available </h3>
+
+            @for (int i = 0; i < tL.Count; i++)
+            {
+                int ttt = tL.ElementAt(i).Id;
+                String tttddd = tL.ElementAt(i).Id + "tttddd";
+                <a id="@tttddd" style="color: black"> @tL.ElementAt(i).StoreName  </a>
+                <br />
+                @Scripts.Render("~/bundles/jquery")
+                <script>
+                    $(document).ready(function () {
+                        $('#@tttddd').click(function () {
+                            $('#tSR').load('tagRev/@ttt');
+                        });
+                    });
+                </script>
+
+            }
+            @if(tL.Count == 0)
+            {
+                <a style="color: black"> No Tags Available  </a>
+            }
+        </div>
+
+        <div class="col-md-8" style="margin-left:2% ;">
+            <div class="row">
+                <div class="col-md-9" style="margin-left:20px">
+                    <h3 style="margin-left:55px; margin-bottom:30px">Add New Tag - Store</h3>
+
+                    <fieldset style="margin-left:25px ; margin-right:25px ; margin-bottom:25px">
+                        
+                        <div class="form-group has-error" id="hDU">
+                            <input class="form-control input-lg" value="@usId" id="usID" type="text">
+                        </div>
+
+                        <script>
+                            $(document).ready(function(){
+                                $('#hDU').hide() ;
+                            });
+                            </script>
+
+                            <div class="form-group has-error">
+                                <input class="form-control input-lg" placeholder="Store Name" id="sN" name="sName" type="text">
+                            </div>
+                            <div class="form-group has-success">
+                                <input class="form-control input-lg" placeholder="Market Name" id="mN" name="mName" value="" type="text">
+                            </div>
+                            <div class="form-group has-error">
+                                <input class="form-control input-lg" placeholder="City" id="cN" name="cName" type="text">
+                            </div>
+                            <input class="btn btn-lg btn-primary btn-block" value="Create StoreTag" id="sB" type="button">
+                        
+                        <script>
+
+                            $(document).ready(function () {
+
+                                $('#sB').click(function () {
+                                    
+                                    var sName = $('#sN').val();
+                                    var mName = $('#mN').val();
+                                    var cName = $('#cN').val();
+                                    var userId = $('#usID').val();
+                                        
+                                    if (userId == 0)
+                                    {
+                                        $('#errMsg').empty();
+                                        $('#errMsg').show();
+                                        $('#sN').val("");
+                                        $('#mN').val("");
+                                        $('#cN').val("");
+                                        $('#errMsg').append('Please Sign In to create a Tag');
+                                    }
+                                    else {
+                                        $.getJSON("/Home/tagRevs?sN=" + sName + "&" + "mN=" + mName + "&" + "cN=" + cName + "&" + "uId=" + userId, function (data) {
+                                        
+                                            if (data == 0) {
+                                                $('#errMsg').empty();
+                                                $('#errMsg').show();
+                                                $('#sN').val("");
+                                                $('#mN').val("");
+                                                $('#cN').val("");
+                                                $('#errMsg').append('<p> Tag Already Available. Please Check the tag List again to find your required tag. </p>');
+                                            }
+                                            else {
+                                                $('#errMsg').empty();
+                                                $('#tSR').empty();
+                                                $('#tSR').show();
+                                                $('#sN').val("");
+                                                $('#mN').val("");
+                                                $('#cN').val("");
+                                                $('#errMsg').append('<p> Tag Created </p>');
+                                                $('#tSR').empty();
+                                            }
+
+                                        });
+
+                                    }
+
+                                });
+
+                            });
+                        </script>
+
+
+                        </fieldset>
+                    </div>
+
+                </div>
+            <div id="errMsg" class="row" style="color:#577492 ; margin-left:100px ; font-size:medium">
+            </div>
+
+
+        </div>
+        
+        <div id="tSR">
+
+        </div>
+    </div>
+
+

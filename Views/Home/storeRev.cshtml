@@ -1,0 +1,118 @@
+﻿@{
+    List<StoreReview> sL = ViewBag.stList;
+    int sId = 0;
+    if(sL.Count > 0)
+    {
+        sId = sL.ElementAt(0).Store.storeId;   
+    }
+    //Layout = null;
+}
+
+<div id="pP">
+<div>
+
+    <div class="row">
+        <div class="col-md-7">
+            <h3 style="margin-top: 45px; color: #577492"> @sL.Count Reviews </h3>
+        </div>
+
+        @if(sL.Count > 0)
+        { 
+        <div class="col-md-3" style="font-size: small; margin-top: 35px">
+            <br />
+
+            <br />
+            <a data-toggle="dropdown" class="dropdown-toggle" id="rev">Order By <b class="caret"></b></a>
+            <ul style="list-style:none" class="dropdown-menu" id="revList">
+                <li><a id="new">Latest Reviews</a></li>
+                <li><a id="old">Oldest Reviews</a></li>
+                <li><a id="high">Highest Rating Reviews</a></li>
+                <li><a id="low">Lowest Rating Reviews</a></li>
+            </ul>
+
+            <script>
+                $(document).ready(function () {
+                    $('#new').click(function () {
+                            $('#pP').empty();
+                            $('#pP').show();
+                            $('#pP').load('StoreRev/@sId');
+                    });
+
+                    $('#old').click(function () {
+                        $('#oByDiv1').empty();
+                        $('#oByDiv1').show();
+                        $('#oByDiv1').load('storeRevOld/@sId');
+                    });
+
+                    $('#high').click(function () {
+                        $('#oByDiv1').empty();
+                        $('#oByDiv1').show();
+                        $('#oByDiv1').load('storeRevHigh/@sId');
+                    });
+
+                    $('#low').click(function () {
+                        $('#oByDiv1').empty();
+                        $('#oByDiv1').show();
+                        $('#oByDiv1').load('storeRevLow/@sId');
+                    });
+                });
+            </script>
+
+            <br />
+        </div>
+        }
+    </div>
+
+    <div>
+
+    </div>
+
+</div>
+
+<div id="oByDiv1">
+@for (var i = 0; i < sL.Count; i++)
+{
+    int iidd = @sL.ElementAt(i).User.userId;
+    String iiddcc = @sL.ElementAt(i).User.userId + "iiddcc";
+    <div style="width:600px ; margin-top:15px" class="row">
+
+        <div class="col-md-7">
+            <img height="70" width="70" src="@sL.ElementAt(i).User.userProfilePic" /> <br />   
+            <a id="@iiddcc" style="color:#686161; font-size:medium; font-family:cursive"> @sL.ElementAt(i).User.FirstName @sL.ElementAt(i).User.LastName </a> wrote to @sL.ElementAt(i).Store.storeName on @sL.ElementAt(i).date <br />
+            
+            <script>
+                $(document).ready(function () {
+                    $('#@iiddcc').click(function () {
+                        $('#sideBar').hide();
+                        $('#userM').empty();
+                        $('#userM').show();
+                        $('#userM').load('userProfile/@iidd');
+                    });
+                });
+                </script>
+        </div>
+        <div class="col-md-5">
+            <p style="color:#262222; font-size:large; font-style:italic">
+                <br /> <br />
+                Rating :
+                @for (var j = 0; j < sL.ElementAt(i).rating; j++)
+                {
+                    <img height="20" width="20" src="~/img/star.png" />
+                }
+                @for (var k = sL.ElementAt(i).rating; k < 5; k++)
+                {
+                    <img height="20" width="20" src="~/img/hollowStar.png" />
+                }
+                <br /> <br />
+            </p>
+        </div>
+        <div>
+            <br />
+            @sL.ElementAt(i).review
+            <br />
+        </div>
+    </div>
+    <br />
+}
+</div>
+</div>

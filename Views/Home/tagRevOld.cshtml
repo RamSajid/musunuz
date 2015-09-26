@@ -1,0 +1,56 @@
+﻿@{
+    List<TagReview> sL = ViewBag.stList;
+    int sId = 0;
+    if (sL.Count > 0)
+    {
+        sId = sL.ElementAt(0).TagStore.Id;
+    }
+    //Layout = null;
+}
+
+@for (var i = 0; i < sL.Count; i++)
+{
+    int ttdd = sL.ElementAt(i).User.userId;
+    String ttddcc = sL.ElementAt(i).User.userId + "ttddcc";
+     
+    <div style="width:600px ; margin-top:15px" class="row">
+
+        <div class="col-md-7">
+            <img height="70" width="70" src="@sL.ElementAt(i).User.userProfilePic" /> <br />
+            <a id="@ttddcc" style="color:#686161; font-size:medium; font-family:cursive"> @sL.ElementAt(i).User.FirstName @sL.ElementAt(i).User.LastName </a> wrote to @sL.ElementAt(i).TagStore.StoreName on @sL.ElementAt(i).date <br />
+
+            <script>
+                $(document).ready(function () {
+                    $('#@ttddcc').click(function () {
+                        $('#sideBar').hide();
+                        $('#userM').empty();
+                        $('#userM').show();
+                        $('#userM').load('userProfile/' + ttdd);
+                    });
+                });
+            </script>
+
+        </div>
+        <div class="col-md-5">
+            <p style="color:#262222; font-size:large; font-style:italic">
+                <br /> <br />
+                Rating :
+                @for (var j = 0; j < sL.ElementAt(i).rating; j++)
+                {
+                    <img height="20" width="20" src="~/img/star.png" />
+                }
+                @for (var k = sL.ElementAt(i).rating; k < 5; k++)
+                {
+                    <img height="20" width="20" src="~/img/hollowStar.png" />
+                }
+                <br /> <br />
+            </p>
+        </div>
+        <div>
+            <br />
+            @sL.ElementAt(i).review
+            <br />
+        </div>
+    </div>
+    <br />
+}

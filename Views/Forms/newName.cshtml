@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/jsp/jquery-2.1.4.min.js"></script>
+    <link href="~/bootStrap/bootstrap.css" rel="stylesheet" />
+    <script src="~/bootStrap/bootstrap.js"></script>
+    <title>newProfile</title>
+</head>
+<body>
+    <div>
+        <div id="editName">
+            <form method="post" action="~/Forms/editUserName">
+                Enter new  username :
+                <input type="text" placeholder="username" name="newUserName" /><br /><br />
+                <input type="submit" class="btn btn-warning bgcolor" value="save changes" style="margin-left:350px" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>

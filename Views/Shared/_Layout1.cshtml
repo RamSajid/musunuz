@@ -1,0 +1,141 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/jQuery/jquery-1.9.1.min.js"></script>
+    <script src="~/jQuery/jquery-2.1.4.js"></script>
+
+    <title>mainScreen</title>
+</head>
+<body>
+    <div style="height:18% ; width:100% ; background-color:#490000" class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-4" style="margin-top:4%">
+            <form role="search" class="" action="~/Home/searchBarResultsStores" method="post">
+                <div class="form-group">
+                    <div class="row">
+                    <div class="col-md-11"> <input name="Search" type="text" placeholder="Search" class="form-control" /> </div>
+                        <div class="col-md-1">
+                             <input type="submit" value="Search" style="font-size:large ; color: #ffffff; background-color: #d5caaf " />
+                        </div>
+                        </div>
+                 </div>
+            </form>
+        </div>
+        
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-3" style="margin-top:3%">
+            <a href="~/Home/mainScreen" style="font-size:xx-large; color: #ffffff; font-weight:800"> iReviewing </a>
+        </div>
+    </div>
+
+   
+    @RenderBody() ;
+
+   
+    <div style="background-color:#577492 ; color:#d5caaf ; font-weight:500 ; font-size:small ; margin-top:50px">
+        <br /> Copyrights to website Owner <br />
+    </div>
+
+</body>
+</html>
+
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
+       
+        $('#revList').hide();
+        $('#rateList').hide();
+        $('#comList').hide();
+        $('#signList').hide();
+        $('#aList').hide();
+
+       
+
+        $('#rateL').mouseover(function () {
+            $('#rateList').show();
+        });
+
+        $('#rateList').mouseover(function () {
+            $('#rateList').show();
+        });
+
+        $('#rateL').mouseout(function () {
+            $('#rateList').hide();
+        });
+
+        $('#rateList').mouseout(function () {
+            $('#rateList').hide();
+        });
+
+
+
+        $('#comL').mouseover(function () {
+            $('#comList').show();
+        });
+
+        $('#comList').mouseover(function () {
+            $('#comList').show();
+        });
+
+        $('#comL').mouseout(function () {
+            $('#comList').hide();
+        });
+
+        $('#comList').mouseout(function () {
+            $('#comList').hide();
+        });
+
+
+
+        $('#signL').mouseover(function () {
+            $('#signList').show();
+        });
+
+        $('#signList').mouseover(function () {
+            $('#signList').show();
+        });
+
+        $('#signL').mouseout(function () {
+            $('#signList').hide();
+        });
+
+        $('#signList').mouseout(function () {
+            $('#signList').hide();
+        });
+
+
+        $('#aL').mouseover(function () {
+            $('#aList').show();
+        });
+
+        $('#aList').mouseover(function () {
+            $('#aList').show();
+        });
+
+        $('#aL').mouseout(function () {
+            $('#aList').hide();
+        });
+
+        $('#aList').mouseout(function () {
+            $('#aList').hide();
+        });
+
+    });
+
+</script>

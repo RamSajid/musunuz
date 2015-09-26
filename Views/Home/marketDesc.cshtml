@@ -1,0 +1,102 @@
+﻿@{
+    int mId = 0;
+    List<Store> store = ViewBag.sList;
+    if (store.Count > 0)
+    {
+        mId = store.ElementAt(0).Market.marketId;
+    }
+    //Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+@for (int j = 0; j < store.Count; j++)
+{
+    int sI = store.ElementAt(j).storeId;
+    int mI = store.ElementAt(j).Market.marketId;
+    int cI = store.ElementAt(j).Market.City.cityId;
+    string sIs = store.ElementAt(j).storeId + "sIs";
+    string sIss = store.ElementAt(j).storeId + "sIss";
+    string sIsss = store.ElementAt(j).storeId + "sIsss";
+    string sIssss = store.ElementAt(j).storeId + "sIssss";
+    string mIs = store.ElementAt(j).Market.marketId + "mIs";
+    string cIs = store.ElementAt(j).Market.marketId + "cIs";
+    <div class="row" style="margin-top:3%">
+        <div class="col-md-3">
+            <a id="@sIssss"> <img src="@store.ElementAt(j).storePic" width="150" height="150" /> </a>
+        </div>
+
+        <div class="col-md-7">
+            <b style="color: #67655D"> Store : </b><a id="@sIs" style="color:black ; font-size:small"> @store.ElementAt(j).storeName </a> <br />
+            <b style="color: #67655D"> Market : </b>   <a id="@mIs" style="color:black ; font-size:small"> @store.ElementAt(j).Market.marketName </a> <br />
+            <b style="color: #67655D"> City : </b>   <a id="@cIs" style="color:black ; font-size:small"> @store.ElementAt(j).Market.City.cityName </a> <br />
+            <b style="color: #67655D"> Total Reviews : </b>   <a id="@sIss" style="color:black ; font-size:small"> @store.ElementAt(j).totalReviews Reviews </a>
+            <br />
+            <label style="text-align:center">
+                <b style="color: #67655D"> Rating :  </b>
+                @for (var s1 = 0; s1 < @store.ElementAt(j).storeRating; s1++)
+                {
+                    <img height="20" width="20" src="~/img/star.png" />
+                }
+                @for (var s2 = @store.ElementAt(j).storeRating; s2 < 5; s2++)
+                {
+                    <img height="20" width="20" src="~/img/hollowStar.png" />
+                }
+            </label>
+            <br />
+            <a id="@sIsss" style="font-size:x-small"> write a review </a>
+            <br /><br />
+            <br /> <br /> <br />
+
+
+            <script>
+                $(document).ready(function () {
+                    $('#@sIs').click(function () {
+                        $('#mDiv').hide();
+                        $('#loadPageM').empty();
+                        $('#loadPageM').show();
+                        $('#loadPageM').load('store/@sI');
+                    });
+
+                    $('#@mIs').click(function () {
+                        $('#mDiv').hide();
+                        $('#loadPageM').empty();
+                        $('#loadPageM').show();
+                        $('#loadPageM').load('market/@mI');
+                    });
+
+                    $('#@cIs').click(function () {
+                        $('#mDiv').hide();
+                        $('#loadPageM').empty();
+                        $('#loadPageM').show();
+                        $('#loadPageM').load('city/@cI');
+                    });
+
+                    $('#@sIss').click(function () {
+                        $('#mDiv').hide();
+                        $('#loadPageM').empty();
+                        $('#loadPageM').show();
+                        $('#loadPageM').load('store/@sI');
+                    });
+
+                    $('#@sIsss').click(function () {
+                        $('#mDiv').hide();
+                        $('#loadPageM').empty();
+                        $('#loadPageM').show();
+                        $('#loadPageM').load('store/@sI');
+                    });
+
+                    $('#@sIssss').click(function () {
+                        $('#mDiv').hide();
+                        $('#loadPageM').empty();
+                        $('#loadPageM').show();
+                        $('#loadPageM').load('store/@sI');
+                    });
+
+                });
+            </script>
+
+        </div>
+    </div>
+    <div class="col-md-1">
+    </div>
+}

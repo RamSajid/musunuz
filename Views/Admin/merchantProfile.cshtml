@@ -1,0 +1,117 @@
+﻿
+@{
+    User uL = ViewBag.userInL;
+    List<StoreReview> sL = ViewBag.userInList;
+    List<merchantStore> mL = ViewBag.userInSt;
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="ssDiv">
+    </div>
+
+<div class="row" id="lDiv" style="background-color:#D4D8D1" >
+
+    <div class="col-md-2" style="margin-top:10% ; margin-left:5px ">
+        <div style="margin-left:10px">
+
+            <a id="addNS" style="color: black; font-size: medium; font-weight: 500"> Create New Store </a>
+            <script>
+                $(document).ready(function () {
+                    $('#addNS').click(function () {
+                        $('#lDiv').hide();
+                        $('#ssDiv').empty();
+                        $('#ssDiv').show();
+                        $('#ssDiv').load('/Admin/createStore/@uL.userId');
+                    });
+                });
+            </script>
+
+            <div id="dCS" style="margin-top:5%">
+                <a href="#" style="color: black; font-size: large; font-weight: 500"> My Stores </a>
+                <div id="dSt" style="margin-left:5px">
+
+                    @for (int i = 0; i < mL.Count; i++)
+                    {
+                        int ic = mL.ElementAt(i).Store.storeId;
+                        string ccd = mL.ElementAt(i).Store.storeId + "ccd";
+                        <a id="@ccd" style="color: black"> @mL.ElementAt(i).Store.storeName </a> <br />
+                        <script>
+                            $(document).ready(function () {
+                                $('#@ccd').click(function () {
+                                    $('#userM').empty();
+                                    $('#userM').hide();
+                                    $('#sideBar').show();
+                                    $('#loadPage').empty();
+                                    $('#loadPage').show();
+                                    $('#loadPage').load('/Admin/viewStore/@ic');
+                                    });
+                         });
+                        </script>
+                    }
+
+                    @if(mL.Count == 0)
+                    {
+                        <a style="color: black"> You haven't created any store yet </a> <br />
+                    }
+                </div>
+
+            </div>
+
+            <div id="dC" style="margin-top:40%">
+                <a href="#" style="color: black; font-size: large; font-weight: 500"> @sL.Count Stores Reviewed </a>
+                <div style="margin-left:5px">
+
+                    @for (int i = 0; i < sL.Count; i++)
+                    {
+                        int idc = sL.ElementAt(i).Store.storeId;
+                        string cc = sL.ElementAt(i).Store.storeId + "cidc";
+                        <a id="@cc" style="color: black"> @sL.ElementAt(i).Store.storeName </a>
+                        <b style="color: black ; margin-left:10px"> @sL.ElementAt(i).rating /5 </b>  <br />
+                        <script>
+                            $(document).ready(function () {
+                                $('#@cc').click(function () {
+                                    $('#userM').empty();
+                                    $('#userM').hide();
+                                    $('#sideBar').show();
+                                    $('#loadPage').empty();
+                                    $('#loadPage').show();
+                                    $('#loadPage').load('store/@idc');
+                                    });
+                         });
+                        </script>
+                    }
+                </div>
+
+
+            </div>
+
+    
+        </div>
+    </div>
+
+
+    <div class="col-md-8" style="margin-left:5% ; margin-top:4% ; background-color:#fff ; padding:15px ">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="@uL.userProfilePic" height="250" width="250" />
+            </div>
+            <div class="col-md-4" style="margin-top:8%">
+                <b style="color:#67655D"> Username : </b>  @uL.FirstName @uL.LastName  <br />
+                <b style="color:#67655D"> Email : </b>  @uL.Email <br />
+                <b style="color:#67655D"> Total Stores : </b>  @mL.Count <br />
+            </div>
+        </div>
+        <div id="loadRev" style="margin:15px">
+        </div>
+    </div>
+</div>
+
+<script>
+                $(document).ready(function () {
+                    $('#loadRev').empty();
+                    $('#loadRev').show();
+                    $('#loadRev').load('/Home/userRev/@uL.userId');
+                });
+</script>
+
+

@@ -1,0 +1,343 @@
+﻿@{
+    Store store = ViewBag.store ;
+    List<Product> product = ViewBag.pList ;
+    User us = (User)(Session["userIn"]);
+    int sII = (int)(Session["storeID"]);
+   
+    //Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<div id="loadPageS">
+    </div>
+
+<div id="sDiv" style="margin-top:8%">
+<img src="@store.storePic" height="300" width="800" />
+
+<div>
+    <h3 style="color: #577492">
+        @store.storeName
+        @if (@store.verified_unverified == 1)
+        {
+            <img height="20" width="20" src="~/img/verified.jpg" style="margin-left:10px" />
+        }
+    </h3>
+    <div class="row">
+        <div class="col-md-6">
+            <b style="color: #67655D"> Address :  </b> @store.storeAddress <br />
+            <b style="color: #67655D"> Market :  </b> @store.Market.marketName <br />
+            <b style="color: #67655D"> City :  </b> @store.Market.City.cityName <br />
+            <b style="color: #67655D"> Rating :  </b> @store.storeRating /5
+        </div>
+        <div class="col-md-4">
+            <img src="@store.visitingCardPic" height="120" width="120" />
+        </div>
+    </div>
+    <p> @store.storeDescription </p>
+
+ 
+</div>
+
+
+    <h3 style="color: #577492">Feaured Products</h3>
+<span class="col-md-9">
+
+</span>
+<div class="col-md-3" style="font-size: small; margin-top: 10px ; margin-bottom:30px">
+    <br />
+
+    <a data-toggle="dropdown" class="dropdown-toggle" style="color: #67655D" href="#" id="rev1">Order By <b class="caret"></b></a>
+    <ul style="list-style: none; background-color: #D4D8D1" class="dropdown-menu" id="revList1">
+
+        <li><a id="cD" style="color:black" >Highest Rating</a></li>
+        <li><a id="cA" style="color:black" >Lowest Rating</a></li>
+        <li><a id="cAlpha" style="color:black" >Alphabetically</a></li>
+    </ul>
+    <script>
+                $(document).ready(function () {
+                    $('#cD').click(function () {
+                            $('#oByDiv').empty();
+                            $('#oByDiv').show();
+                            $('#oByDiv').load('storeDesc/@store.storeId');
+                    });
+
+                    $('#cA').click(function () {
+                        $('#oByDiv').empty();
+                        $('#oByDiv').show();
+                        $('#oByDiv').load('storeAsc/@store.storeId');
+                    });
+
+                    $('#cAlpha').click(function () {
+                        $('#oByDiv').empty();
+                        $('#oByDiv').show();
+                        $('#oByDiv').load('storeAlpha/@store.storeId');
+                    });
+                });
+    </script>
+    <br />
+
+    
+</div>
+
+
+
+<div class="row" id="oByDiv">
+    @for (int j = 0; j < product.Count; j++)
+    {
+        int pI = product.ElementAt(j).productId;
+        int sI = product.ElementAt(j).subCategory.subCategoryId;
+        string pIp = product.ElementAt(j).productId + "pIp";
+        string pIpp = product.ElementAt(j).productId + "pIpp";
+        string pIppp = product.ElementAt(j).productId + "pIppp";
+        string pIpppp = product.ElementAt(j).productId + "pIpppp";
+        string sIs = product.ElementAt(j).subCategory.subCategoryId + "sIs";
+        <div class="col-md-3">
+            <a id="@pIp"> <img src="@product.ElementAt(j).productPic" width="150" height="150" /> </a><br />
+            <a id="@pIpp" style="color:black ; font-size:small"> @product.ElementAt(j).productTitle </a> <br />
+            <a id="@sIs" style="color:black ; font-size:small"> @product.ElementAt(j).subCategory.subCategoryName </a> <br />
+            <a id="@pIppp" style="color:black ; font-size:small"> @product.ElementAt(j).totalReviews Reviews </a>
+            <br />
+            <a id="@pIpppp" style="font-size:x-small"> write a review </a>
+            <br />
+
+            <script>
+                $(document).ready(function () {
+                    $('#@pIp').click(function () {
+                            $('#sDiv').hide();
+                            $('#loadPageS').empty();
+                            $('#loadPageS').show();
+                            $('#loadPageS').load('product/@pI');
+                    });
+
+                    $('#@pIpp').click(function () {
+                        $('#sDiv').hide();
+                        $('#loadPageS').empty();
+                        $('#loadPageS').show();
+                        $('#loadPageS').load('product/@pI');
+                    });
+
+                    $('#@pIppp').click(function () {
+                        $('#sDiv').hide();
+                        $('#loadPageS').empty();
+                        $('#loadPageS').show();
+                        $('#loadPageS').load('product/@pI');
+                    });
+
+                    $('#@pIpppp').click(function () {
+                        $('#sDiv').hide();
+                        $('#loadPageS').empty();
+                        $('#loadPageS').show();
+                        $('#loadPageS').load('product/@pI');
+                    });
+
+                    $('#@sIs').click(function () {
+                        $('#sDiv').hide();
+                        $('#loadPageS').empty();
+                        $('#loadPageS').show();
+                        $('#loadPageS').load('category/@sI');
+                    });
+
+    });
+            </script>
+
+            <label style="text-align:center">
+                @for (var s1 = 0; s1 < product.ElementAt(j).productRating; s1++)
+                {
+                    <img height="20" width="20" src="~/img/star.png" />
+                }
+                @for (var s2 = product.ElementAt(j).productRating; s2 < 5; s2++)
+                {
+                    <img height="20" width="20" src="~/img/hollowStar.png" />
+                }
+            <br /> <br /> <br />
+            </label><br />
+        </div>
+
+    }
+
+    @if(product.Count == 0)
+    {
+                <p style="color: #67655D; margin-left: 25%"> No Product Available at this Store </p>
+    }
+
+</div>
+
+    <div>
+
+        <div class="row">
+            
+            <div class="col-md-8">
+                <div id="rating">
+
+                    <div id="hideThis">
+                        @if(Session["userIn"] == null)
+                        {
+                            <input value="0" id="userII" />   
+                        }
+                        else
+                        {
+                            <input value="@us.userId" id="userII" />
+                        }
+                        <input value="@sII" id="storeII" />
+                        </div>
+
+                    <div>
+                        <img id="ss" title="extremely dissatisfied 0/5" height="10" width="30" src="~/img/rating0.png" />
+                        <img id="s1" title="somewhat dissatisfied 1/5" height="30" width="30" src="~/img/hollowStar.png" />
+                        <img id="s2" title="neither satisfied nor dissatisfied 2/5" height="30" width="30" src="~/img/hollowStar.png" />
+                        <img id="s3" title="somewhat satisfied 3/5" height="30" width="30" src="~/img/hollowStar.png" />
+                        <img id="s4" title="satisfied 4/5" height="30" width="30" src="~/img/hollowStar.png" />
+                        <img id="s5" title="extremely satisfied 5/5" height="30" width="30" src="~/img/hollowStar.png" />
+
+                    </div>
+
+                    <div>
+
+                        <textarea rows="5" cols="90" id="review"> </textarea>
+                        <br /> <br />
+                        <p id="hPp"> </p>
+                    </div>
+                    <input type="button" id="post" value="Post It" style="margin-left: 630px; margin-top: 20px; background-color: #577492; color: #D4D8D1" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="loadRev">
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#hideThis').hide();
+                    $('#loadRev').empty();
+                    $('#loadRev').show();
+                    $('#loadRev').load('storeRev/@store.storeId');
+                });
+    </script>
+
+
+    </div>
+@*@Scripts.Render("~/bundles/jquery")
+<script>
+
+    $(document).ready(function () {
+        $('#rating').hide();
+        $('#writeR').click(function () {
+            $('#rating').show();
+        });
+
+    });
+
+</script>*@
+
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+
+    $(document).ready(function () {
+
+        $('#ss').mouseover(function () {
+            $('#s1').attr("src", "../img/hollowStar.png");
+            $('#s2').attr("src", "../img/hollowStar.png");
+            $('#s3').attr("src", "../img/hollowStar.png");
+            $('#s4').attr("src", "../img/hollowStar.png");
+            $('#s5').attr("src", "../img/hollowStar.png");
+
+        });
+        var rat = 0;
+        $('#s1').mouseover(function () {
+            $('#s1').attr("src", "../img/star.png");
+            $('#s2').attr("src", "../img/hollowStar.png");
+            $('#s3').attr("src", "../img/hollowStar.png");
+            $('#s4').attr("src", "../img/hollowStar.png");
+            $('#s5').attr("src", "../img/hollowStar.png");
+            rat = 1;
+        });
+
+        $('#s2').mouseover(function () {
+            $('#s1').attr("src", "../img/star.png");
+            $('#s2').attr("src", "../img/star.png");
+            $('#s3').attr("src", "../img/hollowStar.png");
+            $('#s4').attr("src", "../img/hollowStar.png");
+            $('#s5').attr("src", "../img/hollowStar.png");
+            rat = 2;
+        });
+
+        $('#s3').mouseover(function () {
+            $('#s1').attr("src", "../img/star.png");
+            $('#s2').attr("src", "../img/star.png");
+            $('#s3').attr("src", "../img/star.png");
+            $('#s4').attr("src", "../img/hollowStar.png");
+            $('#s5').attr("src", "../img/hollowStar.png");
+            rat = 3;
+        });
+
+        $('#s4').mouseover(function () {
+            $('#s1').attr("src", "../img/star.png");
+            $('#s2').attr("src", "../img/star.png");
+            $('#s3').attr("src", "../img/star.png");
+            $('#s4').attr("src", "../img/star.png");
+            $('#s5').attr("src", "../img/hollowStar.png");
+            rat = 4;
+        });
+
+        $('#s5').mouseover(function () {
+            $('#s1').attr("src", "../img/star.png");
+            $('#s2').attr("src", "../img/star.png");
+            $('#s3').attr("src", "../img/star.png");
+            $('#s4').attr("src", "../img/star.png");
+            $('#s5').attr("src", "../img/star.png");
+            rat = 5;
+        });
+
+        $('#post').click(function () {
+            var uu = $('#userII').val();
+            var ssii = $('#storeII').val();
+            if (uu != 0) {
+                var ra = rat;
+                var review = $('#review').val();
+
+                $.getJSON("/Home/postStoreReview?userId=" + uu + "&" + "review=" + review + "&" + "sid=" + ssii + "&" + "rating=" + ra, function (data) {
+                    {
+                        $('#hPp').hide();
+                        $('#review').val("");
+                        $('#s1').attr("src", "../img/hollowStar.png");
+                        $('#s2').attr("src", "../img/hollowStar.png");
+                        $('#s3').attr("src", "../img/hollowStar.png");
+                        $('#s4').attr("src", "../img/hollowStar.png");
+                        $('#s5').attr("src", "../img/hollowStar.png");
+                        $('#userM').empty();
+                        $('#userM').show();
+                        $('#userM').load('store/' + ssii);
+                    }
+
+                })
+            }
+            else {
+
+                //$('#sideBar').hide();
+                //$('#userM').empty();
+                //$('#userM').show();
+                //$('#userM').load('signIn');
+                $('#hPp').empty();
+                $('#hPp').show();
+                $('#review').val("");
+                $('#s1').attr("src", "../img/hollowStar.png");
+                $('#s2').attr("src", "../img/hollowStar.png");
+                $('#s3').attr("src", "../img/hollowStar.png");
+                $('#s4').attr("src", "../img/hollowStar.png");
+                $('#s5').attr("src", "../img/hollowStar.png");
+                $('#hPp').append('Please SignIn to post a review.');
+            }
+        });
+
+
+    });
+
+</script>
+
+
+

@@ -1,0 +1,420 @@
+﻿@{
+    int uId = ViewBag.userId;
+    int sId = ViewBag.storeId;
+    Session["addItemStore"] = sId;
+}
+
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8" >
+        <div>
+            <div>
+                <h3>Select Item's Category</h3>
+            </div>
+
+
+            <div style="background-color:#ffffff">
+                <div>
+
+                    <ul style="list-style:none">
+                        <li class="menu-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #312b2b; font-size:medium; font-family:cursive">Kids & Baby Products<b class="caret"></b></a>
+                            <ul class="dropdown-menu" style="list-style:none">
+                                <li> <a id="bbG">Baby Gear </a> </li>
+                                <li> <a id="bbBG">Baby Bathing & Grooming </a> </li>
+                                <li> <a id="bbF">Baby Furniture </a> </li>
+                                <li> <a id="bbS"> Baby Strollers </a> </li>
+                                <li> <a id="bbT">Baby Toys & Games </a> </li>
+                            </ul>
+                        </li>
+
+                        <li class="menu-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #312b2b; font-size:medium; font-family:cursive">Motors & Accessories<b class="caret"></b></a>
+                            <ul class="dropdown-menu" style="list-style:none">
+                                <li>
+                                    <a id="vC">Cars & Trucks </a>
+                                </li>
+                                <li>
+                                    <a id="vM">Motorcycles </a>
+                                </li>
+                                <li>
+                                    <a id="vA">Vehicle Accessories </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="menu-item dropdown">
+                            <a id="books" style="color: #312b2b; font-size:medium; font-family:cursive">Books </a>
+                        </li>
+
+                        <li class="menu-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #312b2b; font-size:medium; font-family:cursive">Electronics<b class="caret"></b></a>
+                            <ul class="dropdown-menu" style="list-style:none">
+                                <li>
+                                    <a id="eC">Camera </a>
+                                </li>
+                                <li>
+                                    <a id="eE">Other Electronics </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="menu-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #312b2b; font-size:medium; font-family:cursive">Phones & Watches<b class="caret"></b></a>
+                            <ul class="dropdown-menu" style="list-style:none">
+                                <li><a id="phS"> Smart Phones </a> </li>
+                                <li><a id="phPA"> Phones Accessories </a> </li>
+                                <li><a id="phW"> Watches </a> </li>
+                                <li><a id="phWA"> Watches Accessories </a></li>
+                            </ul>
+                        </li>
+
+                        <li class="menu-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #312b2b; font-size:medium; font-family:cursive">Computers<b class="caret"></b></a>
+                            <ul class="dropdown-menu" style="list-style:none">
+                                <li><a id="cD"> Desktop </a> </li>
+                                <li><a id="cL"> Laptops </a> </li>
+                                <li><a id="cT"> Tablets </a> </li>
+                                <li><a id="cN"> NoteBook </a></li>
+                            </ul>
+                        </li>
+
+                        <li class="menu-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #312b2b; font-size:medium; font-family:cursive">Clothing / FootWear<b class="caret"></b></a>
+                            <ul class="dropdown-menu" style="list-style:none">
+                                <li><a id="cfM"> Men </a> </li>
+                                <li><a id="cfW"> Women </a></li>
+                            </ul>
+                        </li>
+
+                        <li class="menu-item dropdown">
+                            <a id="jewel" style="color: #312b2b; font-size:medium; font-family:cursive">Jewelry</a>
+                        </li>
+
+                        <li class="menu-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #312b2b; font-size:medium; font-family:cursive"> Home & Garden<b class="caret"></b></a>
+                            <ul class="dropdown-menu" style="list-style:none">
+                                <li><a id="fur"> Furniture </a> </li>
+                                <li><a id="fB"> Food & Beverages </a> </li>
+                                <li><a id="kD"> Kitechen & Dining Items </a> </li>
+                                <li><a id="hD"> Home Decor </a> </li>
+                            </ul>
+                        </li>
+
+                        <li class="menu-item dropdown">
+                            <a id="makeup" style="color: #312b2b; font-size:medium; font-family:cursive">Make Up</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="pSCat" style="margin-left:80px ; margin-top:30px ; margin-bottom:25px ; font-size:medium">
+
+        </div>
+    </div>
+</div>
+
+<div id="loadForm">
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#bbG').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Kids & Baby Products - Baby Gear ');
+
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/babyStroller/1');
+        });
+
+        $('#bbBG').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Kids & Baby Products - Baby Bathing & Grooming ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/babyStroller/2');
+        });
+
+        $('#bbF').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Kids & Baby Products - Baby Furniture ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/babyStroller/3');
+        });
+
+        $('#bbS').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Kids & Baby Products - Baby Strollers ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/babyStroller/4');
+        });
+
+        $('#bbT').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Kids & Baby Products - Baby Toys & Games ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/babyStroller/5');
+        });
+
+
+        $('#vC').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Vehicles - Cars & Trucks ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Motorcycles/6');
+        });
+
+        $('#vM').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Vehicles - Motorcycles ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Motorcycles/7');
+        });
+
+        $('#vA').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Vehicles - Vehicles Accessories ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Motorcycles/8');
+        });
+
+        $('#books').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Books ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Books/25');
+        });
+
+        $('#eC').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Electronic Appliances - Cameras ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/cameras/9');
+        });
+
+        $('#eE').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Electronic Appliances - Other Electronic Appliances ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/cameras/10');
+        });
+
+        $('#phS').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Phones & Watches - Smart Phones ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Mobiles/11');
+        });
+
+        $('#phPA').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Phones & Watches - Phone Accessories ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Mobiles/12');
+        });
+
+        $('#phW').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Phones & Watches - Watches ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Mobiles/13');
+        });
+
+        $('#phWA').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Phones & Watches - Watch Accessories ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Mobiles/14');
+        });
+
+        $('#cD').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Computers - Desktop ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Mobiles/16');
+        });
+
+        $('#cL').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Computers - Laptop ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Mobiles/15');
+        });
+
+        $('#cT').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Computers - Tablet ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Mobiles/18');
+        });
+
+        $('#cN').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Computers - Notebook ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Mobiles/17');
+        });
+
+        $('#cfM').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Clothes / FootWear - Men ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/CulturalEthnicClothingIndiaPakistanSalwarKameez/19');
+        });
+
+        $('#cfW').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Clothes / FootWear - Women ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/CulturalEthnicClothingIndiaPakistanSalwarKameez/20');
+        });
+
+        $('#jewel').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Jewellery ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/Jewellery/26');
+        });
+
+        $('#fB').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Home & Garden - Food & Bevarages ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/food/22');
+        });
+
+        $('#kD').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Home & Garden - Kitchen & Dining Items ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/kitchen/23');
+        });
+
+        $('#hD').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Home & Garden - Home Decor ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/HomeDecor/24');
+        });
+
+        $('#fur').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('Home & Garden - Furniture ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/furniture/21');
+        });
+
+        $('#makeup').click(function () {
+            $('#pSCat').empty();
+            $('#pSCat').show();
+            $('#pSCat').append('MakeUp ');
+            $('#loadForm').empty();
+            $('#loadForm').show();
+            $('#loadForm').load('/Forms/makeup/27');
+        });
+    });
+</script>
+
+
+       @*
+        <script>
+
+           $(document).ready(function () {
+
+               $('#car1').hide();
+               $('#baby1').hide();
+
+
+               $('#baby').mouseover(function () {
+                   $('#baby1').show();
+               });
+
+               $('#baby').mouseout(function () {
+                   $('#baby1').hide();
+               });
+
+
+               $('#baby1').mouseover(function () {
+                   $('#baby1').show();
+               });
+
+               $('#baby1').mouseout(function () {
+                   $('#baby1').hide();
+               });
+
+               $('#car').mouseover(function () {
+                   $('#car1').show();
+               });
+
+               $('#car').mouseout(function () {
+                   $('#car1').hide();
+               });
+
+               $('#car1').mouseover(function () {
+                   $('#car1').show();
+               });
+
+               $('#car1').mouseout(function () {
+                   $('#car1').hide();
+               });
+
+           });
+
+        </script>*@

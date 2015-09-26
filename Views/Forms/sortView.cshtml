@@ -1,0 +1,115 @@
+﻿@{
+    Layout = null;
+    var nextVal = 1;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Sort</title>
+    <script src="~/jsp/jquery-2.1.4.min.js"></script>
+    <link href="~/bootStrap/bootstrap.css" rel="stylesheet" />
+    <script src="~/bootStrap/bootstrap.js"></script>
+    <script type="text/javascript">
+
+        function loadReviews(btnNo) {
+            var str = $("#selectedOption :selected").text();
+            alert(str);
+            $('#loadReviews').load("reviews?opt=" + str  + "&pageNo=" + btnNo);
+        }
+        $(document).ready(function () {
+            
+            $('#next').on('click' , function(){
+                
+            });
+            $('prev').on('click', function () {
+                
+            });
+        });
+    </script>
+    <style>
+        #top-buffer { margin-top:20px; }
+        .margin-top { margin-top:20px; }
+        .margin-left { margin-left:5px; }
+        .margin-top10 { margin-top:10px; }
+        .star-six {
+	width: 0;
+	height: 0;
+	border-left: 25px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 40px solid red;
+	position: relative;
+}
+        .circle {
+	width: 100px;
+	height: 100px;
+	background: red;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+    </style>
+</head>
+<body style="background-color:#fff">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" style="background-color:lightpink">
+                <div class="row" style="background-color:white">
+                    <div class="col-md-12">
+                        <h1 style="color:lightblue">S<small style="color:lightgreen">s</small>A<small style="color:lightgreen">r</small>R</h1>
+                        
+                    </div>
+                </div>
+                <div class="row" style="border:solid;border-color:darkorange;background-color:white">
+                    
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10 margin-top10" style="background-color:lightgray;border-radius:3px">
+                            <br />
+                            
+                            <h5><b>Sort By:</b></h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    
+                                    
+                                    <select class="selectpicker" name="selectedOption" id="selectedOption" >
+                                        
+                                        <option>Alphabetical_Order</option>
+                                        <option >newest</option>
+                                        <option >oldest</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    Page : <br />
+                                    <button id="prev">Prev</button>
+                                    
+                                    @for (int i = nextVal ; i <=5; i++)
+                                    {
+                                        <button id="@i" onclick="loadReviews(@i)">@i</button>
+                                    }
+                                    <button id="next">Next</button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div id="loadReviews" class="col-md-7 margin-top10" style="background-color:orange;border:thick;border-color:greenyellow">
+                                    
+                                    
+                                </div>
+                        
+                                <div class="col-md-1"></div>
+                             </div>
+                        </div> 
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div><br /><br /><br />
+    </div>
+</body>
+</html>

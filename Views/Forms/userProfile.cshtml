@@ -1,0 +1,133 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<div>
+    <h2> Highest Rated Stores </h2>
+
+    <div class="row">
+        @for (int j = 0, total = 6; j < total ; j++)
+        {
+                    <div class="col-md-2">
+                        <a href="~/Home/store"> <img src="" width="100" height="100" /> </a><br />
+                        <label style="text-align:center ; font-size:small"> <a href="~/Home/store"> Store </a> </label><br />
+                        <label style="text-align: center; font-size: small"> <a href="~/Home/market"> Market </a> <br /> <a href="~/Home/city"> City </a> </label><br />
+                        <label style="text-align:center">
+                            @for (var s1 = 0; s1 < 3; s1++)
+                            {
+                                <img height="20" width="20" src="~/img/star.png" />
+                            }
+                            @for (var s2 = 3; s2 < 5; s2++)
+                            {
+                                <img height="20" width="20" src="~/img/hollowStar.png" />
+                            }
+                            <br />
+                            <a href="~/Home/store" style="margin-left:10px"> # Reviews </a></label>
+                        </div>
+
+        }
+        
+        </div>
+    <div style="margin-left:800px">
+        <a href="~/Home/userHRS"> View all  </a>
+    </div>
+
+
+</div>
+
+
+
+<div>
+    <h2> Lowest Rated Stores </h2>
+       
+    <div class="row">
+        @for (int j = 0, total = 6; j < total; j++)
+        {
+            <div class="col-md-2">
+                <a href="~/Home/store"> <img src="" width="100" height="100" /> </a><br />
+                <label style="text-align:center ; font-size:small"> <a href="~/Home/store"> Store </a> </label><br />
+                <label style="text-align: center; font-size: small"> <a href="~/Home/market"> Market </a> <br /> <a href="~/Home/city"> City </a> </label><br />
+                <label style="text-align:center">
+                    @for (var s1 = 0; s1 < 3; s1++)
+                    {
+                        <img height="20" width="20" src="~/img/star.png" />
+                    }
+                    @for (var s2 = 3; s2 < 5; s2++)
+                    {
+                        <img height="20" width="20" src="~/img/hollowStar.png" />
+                    }
+                    <br />
+                    <a href="~/Home/store" style="margin-left:10px"> # Reviews </a>
+                </label>
+
+            </div>
+
+        }
+
+    </div>
+    <div style="margin-left:800px">
+        <a href="~/Home/userHRS"> View all  </a>
+    </div>
+
+</div>
+
+
+<div>
+
+    <div class="row">
+        <div class="col-md-7">
+            <h2 style="margin-top:45px; font-weight:500; color:#490000"> Total# Reviews </h2>
+        </div>
+        <div class="col-md-3" style="font-size: small; margin-top: 35px">
+            <br /> <br />
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#" id="rev">Order By <b class="caret"></b></a>
+            <ul style="list-style:none" class="dropdown-menu" id="revList">
+                <li><a href="">Latest Reviews</a></li>
+                <li><a href="">Oldest Reviews</a></li>
+                <li><a href="">Highest Rating Reviews</a></li>
+                <li><a href="">Lowest Rating Reviews</a></li>
+            </ul>
+            <br />
+        </div>
+    </div>
+
+    @for (var i = 0; i < 5; i++)
+    {
+        <div style="width:600px ; margin-top:15px" class="row">
+
+            <div class="col-md-5">
+                <img height="70" width="70" src="" /> <br />
+                <a href="~/Screens/othersProfile" style="color:#686161; font-size:medium; font-family:cursive"> USERNAME </a>
+
+            </div>
+            <div class="col-md-7">
+                <p style="color:#262222; font-size:large; font-style:italic">
+                    <br /> <br />
+                    Rating :
+                    @for (var j = 0; j < 3; j++)
+                    {
+                        <img height="20" width="20" src="~/img/star.png" />
+                    }
+                    @for (var k = 3; k < 5; k++)
+                    {
+                        <img height="20" width="20" src="~/img/hollowStar.png" />
+                    }
+                    <br /> <br />
+                </p>
+            </div>
+            <div>
+                <br />
+                He is a Top Reviewer. He is a Top Reviewer. He is a Top Reviewer. He is a Top Reviewer. He is a Top Reviewer.
+                He is a Top Reviewer. He is a Top Reviewer. He is a Top Reviewer. He is a Top Reviewer. He is a Top Reviewer.
+                He is a Top Reviewer. He is a Top Reviewer. He is a Top Reviewer. He is a Top Reviewer. He is a Top Reviewer.
+                He is a Top Reviewer. He is a Top Reviewer. He is a Top Reviewer.
+                <br />
+            </div>
+        </div>
+        <br />
+    }
+
+
+
+</div>

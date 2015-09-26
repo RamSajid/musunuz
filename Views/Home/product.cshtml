@@ -1,0 +1,333 @@
+﻿
+@{
+    User us = (User)(Session["userIn"]);
+    Product prod = ViewBag.prod;
+    List<Store> sL = ViewBag.sL;
+    int cI = prod.subCategory.subCategoryId;
+    int sI = prod.Store.storeId;
+    string cIc = prod.subCategory.subCategoryId + "cIc";
+    string sIs = prod.Store.storeId + "sIs";
+    //Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div id="loadPageP">
+    </div>
+
+<div id="pDiv" style="margin-top:8%">
+<div class="row">
+    <div class="col-md-4">
+        <img src="@prod.productPic" height="250" width="250" />
+    </div>
+<div class="col-md-6">
+    <h2 style="color: #577492">
+        @prod.productTitle
+    </h2>
+    <p> <b style="color: #67655D"> Category : </b> <a id="@cIc" > @prod.subCategory.subCategoryName </a> <br />
+        <b style="color: #67655D"> Store : </b> <a id="@sIs"> @prod.Store.storeName </a> <br />    
+        <b style="color: #67655D"> Rating : </b> @prod.productRating /5 <br /> Product Description </p>
+
+    <script>
+                $(document).ready(function () {
+                    $('#@cIc').click(function () {
+                            $('#pDiv').hide();
+                            $('#loadPageP').empty();
+                            $('#loadPageP').show();
+                            $('#loadPageP').load('category/@cI');
+                    });
+
+                    $('#@sIs').click(function () {
+                        $('#pDiv').hide();
+                        $('#loadPageP').empty();
+                        $('#loadPageP').show();
+                        $('#loadPageP').load('store/@sI');
+                    });
+
+    });
+    </script>
+
+</div>
+
+    </div>
+
+    @*<div class="row">
+        @if (prod.subCategoryId == 1 || prod.subCategoryId == 2 || prod.subCategoryId == 3 || prod.subCategoryId == 4 || prod.subCategoryId == 5)
+{
+    <img src="@prod.BabyStrollerTbls.Photo1" height="150" width="150" />
+    <img src="@prod.BabyStrollerTbls.Photo2" height="150" width="150" />
+    <img src="@prod.BabyStrollerTbls.Photo3" height="150" width="150" />
+    <img src="@prod.BabyStrollerTbls.Photo4" height="150" width="150" />
+}
+else if (prod.subCategoryId == 6 || prod.subCategoryId == 7 || prod.subCategoryId == 8)
+{
+    <img src="@prod.MotorCyclesTbls.Photo1" height="150" width="150" />
+    <img src="@prod.MotorCyclesTbls.Photo2" height="150" width="150" />
+    <img src="@prod.MotorCyclesTbls.Photo3" height="150" width="150" />
+    <img src="@prod.MotorCyclesTbls.Photo4" height="150" width="150" />
+}
+else if (prod.subCategoryId == 25)
+{
+    <img src="@prod.BooksTbls.Photo1" height="150" width="150" />
+    <img src="@prod.BooksTbls.Photo2" height="150" width="150" />
+    <img src="@prod.BooksTbls.Photo3" height="150" width="150" />
+    <img src="@prod.BooksTbls.Photo4" height="150" width="150" />
+}
+else if (prod.subCategoryId == 9 || prod.subCategoryId == 10)
+{
+    <img src="@prod.CamerasTbls.Photo1" height="150" width="150" />
+    <img src="@prod.CamerasTbls.Photo2" height="150" width="150" />
+    <img src="@prod.CamerasTbls.Photo3" height="150" width="150" />
+    <img src="@prod.CamerasTbls.Photo4" height="150" width="150" />
+}
+else if (prod.subCategoryId == 11 || prod.subCategoryId == 12 || prod.subCategoryId == 13 || prod.subCategoryId == 14 || prod.subCategoryId == 15 || prod.subCategoryId == 16 || prod.subCategoryId == 17 || prod.subCategoryId == 18)
+{
+    <img src="@prod.MobilesTbls.Photo1" height="150" width="150" />
+    <img src="@prod.MobilesTbls.Photo2" height="150" width="150" />
+    <img src="@prod.MobilesTbls.Photo3" height="150" width="150" />
+    <img src="@prod.MobilesTbls.Photo4" height="150" width="150" />
+}
+else if (prod.subCategoryId == 19 || prod.subCategoryId == 20)
+{
+    <img src="@prod.ClothingTbls.Photo1" height="150" width="150" />
+    <img src="@prod.ClothingTbls.Photo2" height="150" width="150" />
+    <img src="@prod.ClothingTbls.Photo3" height="150" width="150" />
+    <img src="@prod.ClothingTbls.Photo4" height="150" width="150" />
+}
+else if (prod.subCategoryId == 26)
+{
+    <img src="@prod.JewelleryTbls.Photo1" height="150" width="150" />
+    <img src="@prod.JewelleryTbls.Photo2" height="150" width="150" />
+    <img src="@prod.JewelleryTbls.Photo3" height="150" width="150" />
+    <img src="@prod.JewelleryTbls.Photo4" height="150" width="150" />
+}
+else if (prod.subCategoryId == 22)
+{
+    <img src="@prod.FoodTbls.Photo1" height="150" width="150" />
+    <img src="@prod.FoodTbls.Photo2" height="150" width="150" />
+    <img src="@prod.FoodTbls.Photo3" height="150" width="150" />
+    <img src="@prod.FoodTbls.Photo4" height="150" width="150" />
+}
+else if (prod.subCategoryId == 23)
+{
+    <img src="@prod.KitchenTbls.Photo1" height="150" width="150" />
+    <img src="@prod.KitchenTbls.Photo2" height="150" width="150" />
+    <img src="@prod.KitchenTbls.Photo3" height="150" width="150" />
+    <img src="@prod.KitchenTbls.Photo4" height="150" width="150" />
+}
+else if (prod.subCategoryId == 24)
+{
+    <img src="@prod.HomeDecorTbls.Photo1" height="150" width="150" />
+    <img src="@prod.HomeDecorTbls.Photo2" height="150" width="150" />
+    <img src="@prod.HomeDecorTbls.Photo3" height="150" width="150" />
+    <img src="@prod.HomeDecorTbls.Photo4" height="150" width="150" />
+}
+else if (prod.subCategoryId == 21)
+{
+    <img src="@prod.FurnitureTbls.Photo1" height="150" width="150" />
+    <img src="@prod.FurnitureTbls.Photo2" height="150" width="150" />
+    <img src="@prod.FurnitureTbls.Photo3" height="150" width="150" />
+    <img src="@prod.FurnitureTbls.Photo4" height="150" width="150" />
+}
+else if (prod.subCategoryId == 27)
+{
+    <img src="@prod.MakeupTbls.Photo1" height="150" width="150" />
+    <img src="@prod.MakeupTbls.Photo2" height="150" width="150" />
+    <img src="@prod.MakeupTbls.Photo3" height="150" width="150" />
+    <img src="@prod.MakeupTbls.Photo4" height="150" width="150" />
+}
+        </div>*@
+
+<div style="margin-top:20px" class="row">
+    Category available : <br />
+    @for (int i = 0; i < sL.Count; i++ )
+    {
+        int sC = sL.ElementAt(i).storeId;
+        string sCs = sL.ElementAt(i).storeId + "sCs"; 
+        <div class="col-md-2">
+            <a id="@sCs" > @sL.ElementAt(i).storeName </a>
+            </div>
+        <script>
+                $(document).ready(function () {
+                    $('#@sCs').click(function () {
+                            $('#pDiv').hide();
+                            $('#loadPageP').empty();
+                            $('#loadPageP').show();
+                            $('#loadPageP').load('store/@sC');
+                    });
+
+    });
+    </script>
+    }
+</div>
+
+
+    <div>
+
+        <div class="row">
+
+            <div class="col-md-8">
+                <div id="rating">
+
+                    <div id="hideThis">
+                        @if (Session["userIn"] == null)
+                        {
+                            <input value="0" id="userII" />
+                        }
+                        else
+                        {
+                            <input value="@us.userId" id="userII" />
+                        }
+                        <input value="@prod.Store.storeId" id="storeII" />
+                        <input value="@prod.productId" id="prodII" />
+                    </div>
+                    <div>
+                        <img id="ss" title="extremely dissatisfied 0/5" height="10" width="30" src="~/img/rating0.png" />
+                        <img id="s1" title="somewhat dissatisfied 1/5" height="30" width="30" src="~/img/hollowStar.png" />
+                        <img id="s2" title="neither satisfied nor dissatisfied 2/5" height="30" width="30" src="~/img/hollowStar.png" />
+                        <img id="s3" title="somewhat satisfied 3/5" height="30" width="30" src="~/img/hollowStar.png" />
+                        <img id="s4" title="satisfied 4/5" height="30" width="30" src="~/img/hollowStar.png" />
+                        <img id="s5" title="extremely satisfied 5/5" height="30" width="30" src="~/img/hollowStar.png" />
+
+                    </div>
+
+                    <div>
+                        <textarea rows="5" cols="90" id="review"> </textarea>
+                        <br /> <br />
+                        <p id="hPp"> </p>
+                    </div>
+                    <input type="submit" id="postIt" value="Post It" style="margin-left:630px; margin-top:20px; background-color:#577492; color:#D4D8D1" />
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="loadRev">
+    </div>
+  </div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#hideThis').hide();
+                    $('#loadRev').empty();
+                    $('#loadRev').show();
+                    $('#loadRev').load('productRev/@prod.productId');
+                });
+</script>
+
+
+
+@*@Scripts.Render("~/bundles/jquery")
+    <script>
+
+        $(document).ready(function () {
+            $('#rating').hide();
+            $('#writeR').click(function () {
+                $('#rating').show();
+            });
+
+        });
+
+    </script>*@
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+
+    $(document).ready(function () {
+
+        $('#ss').mouseover(function () {
+            $('#s1').attr("src", "../img/hollowStar.png");
+            $('#s2').attr("src", "../img/hollowStar.png");
+            $('#s3').attr("src", "../img/hollowStar.png");
+            $('#s4').attr("src", "../img/hollowStar.png");
+            $('#s5').attr("src", "../img/hollowStar.png");
+        });
+        var rat = 0;
+        $('#s1').mouseover(function () {
+            $('#s1').attr("src", "../img/star.png");
+            $('#s2').attr("src", "../img/hollowStar.png");
+            $('#s3').attr("src", "../img/hollowStar.png");
+            $('#s4').attr("src", "../img/hollowStar.png");
+            $('#s5').attr("src", "../img/hollowStar.png");
+            rat = 1;
+        });
+
+        $('#s2').mouseover(function () {
+            $('#s1').attr("src", "../img/star.png");
+            $('#s2').attr("src", "../img/star.png");
+            $('#s3').attr("src", "../img/hollowStar.png");
+            $('#s4').attr("src", "../img/hollowStar.png");
+            $('#s5').attr("src", "../img/hollowStar.png");
+            rat = 2;
+        });
+
+        $('#s3').mouseover(function () {
+            $('#s1').attr("src", "../img/star.png");
+            $('#s2').attr("src", "../img/star.png");
+            $('#s3').attr("src", "../img/star.png");
+            $('#s4').attr("src", "../img/hollowStar.png");
+            $('#s5').attr("src", "../img/hollowStar.png");
+            rat = 3;
+        });
+
+        $('#s4').mouseover(function () {
+            $('#s1').attr("src", "../img/star.png");
+            $('#s2').attr("src", "../img/star.png");
+            $('#s3').attr("src", "../img/star.png");
+            $('#s4').attr("src", "../img/star.png");
+            $('#s5').attr("src", "../img/hollowStar.png");
+            rat = 4;
+        });
+
+        $('#s5').mouseover(function () {
+            $('#s1').attr("src", "../img/star.png");
+            $('#s2').attr("src", "../img/star.png");
+            $('#s3').attr("src", "../img/star.png");
+            $('#s4').attr("src", "../img/star.png");
+            $('#s5').attr("src", "../img/star.png");
+            rat = 5;
+        });
+
+        $('#postIt').click(function () {
+            var uu = $('#userII').val();
+            var ss = $('#storeII').val();
+            var pp = $('#prodII').val();
+            if (uu != 0) {
+                var review = $('#review').val();
+                var rating = rat;
+                $.getJSON("/Home/postproductReview?uId=" + uu + "&" + "sId=" + ss + "&" + "review=" + review + "&" + "rating=" + rating + "&" + "pId=" + pp, function (data) {
+                    $('#hPp').hide();
+                    $('#userM').empty();
+                    $('#userM').show();
+                    $('#review').val("");
+                    $('#s1').attr("src", "../img/hollowStar.png");
+                    $('#s2').attr("src", "../img/hollowStar.png");
+                    $('#s3').attr("src", "../img/hollowStar.png");
+                    $('#s4').attr("src", "../img/hollowStar.png");
+                    $('#s5').attr("src", "../img/hollowStar.png");
+                    $('#userM').load('product/' + pp);
+                });
+            }
+            else {
+                //$('#sideBar').hide();
+                //$('#userM').empty();
+                //$('#userM').show();
+                //$('#userM').load('signIn');
+                $('#hPp').empty();
+                $('#hPp').show();
+                $('#review').val("");
+                $('#s1').attr("src", "../img/hollowStar.png");
+                $('#s2').attr("src", "../img/hollowStar.png");
+                $('#s3').attr("src", "../img/hollowStar.png");
+                $('#s4').attr("src", "../img/hollowStar.png");
+                $('#s5').attr("src", "../img/hollowStar.png");
+                $('#hPp').append('Please SignIn to post a review.');
+            }
+
+        });
+    });
+
+</script>

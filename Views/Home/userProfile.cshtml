@@ -1,0 +1,105 @@
+﻿@{
+    User uL = ViewBag.userInL;
+    List<StoreReview> sL = ViewBag.userInList;
+    List<TagStore> tL = ViewBag.userInListT;
+}
+
+
+@if(uL.merchantOrUser.Equals("user"))
+{
+<div class="row" id="userP" style="background-color:#D4D8D1">
+
+    <div class="col-md-2">
+        <div style="margin-left:10px">
+
+            <div style="margin-top:18% ; margin-left:5px">
+                <a href="#" style="color: black; font-size: large; font-weight: 500"> @sL.Count Stores Reviewed </a>
+                <div style="margin-left:5px">
+
+                    @for (int i = 0; i < sL.Count ; i++)
+                    {
+                        int idc = sL.ElementAt(i).Store.storeId;
+                        string cc = sL.ElementAt(i).Store.storeId + "ccc";
+                        <a id="@cc" style="color: black"> @sL.ElementAt(i).Store.storeName </a>
+                        <b style="color: black ; margin-left:10px"> @sL.ElementAt(i).rating /5 </b>  <br />
+                        <script>
+                            $(document).ready(function () {
+                                $('#@cc').click(function () {
+                                    $('#sideBar').show();
+                                    $('#userM').empty();
+                                    $('#userM').hide();
+                                    $('#loadPage').empty();
+                                    $('#loadPage').show();
+                                    $('#loadPage').load('store/@idc');
+                                    });
+                         });
+                        </script>
+                    }
+                    <br /> <br />
+                    <a href="#" style="color: black; font-size: large; font-weight: 500"> @tL.Count Tags Created </a>
+                    <div style="margin-left:5px">
+
+                        @for (int i = 0; i < tL.Count ; i++)
+                        {
+                            int tagId = tL.ElementAt(i).Id;
+                            String ttId = tL.ElementAt(i).Id + "ttId";
+                            <a id="@ttId" style="color: black"> @tL.ElementAt(i).StoreName, @tL.ElementAt(i).MarketName, @tL.ElementAt(i).CityName  </a>
+                            <br />
+                        <script>
+                            $(document).ready(function () {
+                                $('#@ttId').click(function () {
+                                    $('#sideBar').show();
+                                    $('#userM').empty();
+                                    $('#userM').hide();
+                                    $('#loadPage').empty();
+                                    $('#loadPage').show();
+                                    $('#loadPage').load('tagReviews/@tagId');
+                                    });
+                         });
+                        </script>    
+                        }
+                    </div>
+
+            </div>
+        </div>
+    </div>
+        </div>
+
+    <div class="col-md-8" style="margin-left:5% ; margin-top:4% ; background-color:#fff ; padding:15px ">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="@uL.userProfilePic" height="200" width="200" />
+            </div> 
+            <div class="col-md-4" style="margin-top:8%">
+                <b style="color:#67655D"> Name : </b>  @uL.FirstName @uL.LastName <br />
+                <b style="color:#67655D"> Email : </b>  @uL.Email <br />
+            </div> 
+        </div>
+        <div id="loadRev1" style="margin:15px">
+        </div>
+        </div>
+
+</div>
+    
+<script>
+                $(document).ready(function () {
+                    $('#loadRev1').empty();
+                    $('#loadRev1').show();
+                    $('#loadRev1').load('userRev/@uL.userId');
+                });
+</script>
+}
+
+else if(uL.merchantOrUser.Equals("merchant"))
+{
+    <div id="merP">
+        </div>
+    <script>
+        $(document).ready(function () {
+            $('#userP').hide();
+            $('#merP').empty();
+            $('#merP').show();
+            $('#merP').load('/Admin/merchantProfile/@uL.userId');
+        });
+</script>
+}

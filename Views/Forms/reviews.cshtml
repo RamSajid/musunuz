@@ -1,0 +1,52 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <title>reviews</title>
+    <script src="~/jsp/jquery-2.1.4.min.js"></script>
+    <link href="~/bootStrap/bootstrap.css" rel="stylesheet" />
+    <script src="~/bootStrap/bootstrap.js"></script>
+</head>
+<body>
+    <div>
+        <p><strong>Reviews</strong></p>
+            
+           
+            @if ((Request.QueryString["opt"].ToString()).Equals("Alphabetical_Order"))
+            {
+                for (int i = (Int32.Parse(Request.QueryString["pageNo"]) - 1) * 2 ; i < Int32.Parse(Request.QueryString["pageNo"]) * 2; i++)
+                {
+                    <textarea class="form-control" rows="5">@Int32.Parse(Request.QueryString["pageNo"])</textarea>
+                    <textarea class="form-control" rows="5">@ViewBag.listOfReviewsAlphabetically[i]</textarea>
+                
+                }
+            }
+            else if ((Request.QueryString["opt"].ToString()).Equals("newest"))
+            {
+                for (int i = (Int32.Parse(Request.QueryString["pageNo"]) - 1) * 2 ; i < Int32.Parse(Request.QueryString["pageNo"]) * 2; i++)
+                {
+                    <textarea class="form-control" rows="5">@Int32.Parse(Request.QueryString["pageNo"])</textarea>
+                    <textarea class="form-control" rows="5">@ViewBag.listOfReviewsNewest[i]</textarea>
+                
+                }
+            }
+            else if ((Request.QueryString["opt"].ToString()).Equals("oldest"))
+            {
+                for (int i = (Int32.Parse(Request.QueryString["pageNo"]) - 1) * 2 ; i < Int32.Parse(Request.QueryString["pageNo"]) * 2; i++)
+                {
+                    <textarea class="form-control" rows="5">@Int32.Parse(Request.QueryString["pageNo"])</textarea>
+                    <textarea class="form-control" rows="5">@ViewBag.listOfReviewsOldest[i]</textarea>
+                
+                }
+            }
+        
+            
+        
+    </div>
+</body>
+</html>

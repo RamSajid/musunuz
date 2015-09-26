@@ -1,0 +1,77 @@
+﻿@*@using FYP1.Models
+    @model List<FYP1.Models.Market>*@
+
+@{
+    List<Market> market = ViewBag.mList;
+    int cId = 0;
+    if (market.Count > 0)
+    {
+        cId = market.ElementAt(0).City.cityId;
+    }
+    //Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+@for (int j = 0; j < market.Count; j++)
+{
+    int mI = market.ElementAt(j).marketId;
+    string mIm = market.ElementAt(j).marketId + "mIm";
+    string mImm = market.ElementAt(j).marketId + "mImm";
+    string mImmm = market.ElementAt(j).marketId + "mImmm";
+    <div class="row" style="margin-top:3%">
+        <div class="col-md-3">
+            <a id="@mIm"> <img src="@market.ElementAt(j).marketPic" width="150" height="150" /> </a>
+        </div>
+        <div class="col-md-7">
+            <b style="color: #67655D"> Market : </b> <a id="@mImm" style="color:black ; font-size:small"> @market.ElementAt(j).marketName </a> <br />
+            <b style="color: #67655D"> City : </b><a href="#" style="color:black ; font-size:small"> @market.ElementAt(j).City.cityName </a> <br />
+            <b style="color: #67655D"> Total Reviews : </b><a id="@mImmm" style="margin-left:10px ; color:black ; font-size:small"> @market.ElementAt(j).totalReviews Reviews </a> <br />
+            <script>
+                $(document).ready(function () {
+                    //$('#cityD').click(function () {
+                    $('#@mIm').click(function () {
+                        $('#cityD').hide();
+                        $('#loadPageC').empty();
+                        $('#loadPageC').show();
+                        $('#loadPageC').load('market/@mI');
+                    });
+                    //});
+                    $('#@mImm').click(function () {
+                        $('#cityD').hide();
+                        $('#loadPageC').empty();
+                        $('#loadPageC').show();
+                        $('#loadPageC').load('market/@mI');
+                    });
+
+                    $('#@mImmm').click(function () {
+                        $('#cityD').hide();
+                        $('#loadPageC').empty();
+                        $('#loadPageC').show();
+                        $('#loadPageC').load('market/@mI');
+                    });
+
+                });
+            </script>
+            <label style="text-align:center">
+                <b style="color: #67655D"> Rating : </b>
+                @for (var s1 = 0; s1 < market.ElementAt(j).marketRating; s1++)
+                {
+                    <img height="20" width="20" src="~/img/star.png" />
+                }
+                @for (var s2 = market.ElementAt(j).marketRating; s2 < 5; s2++)
+                {
+                    <img height="20" width="20" src="~/img/hollowStar.png" />
+                }
+                <br /> <br /> <br />
+            </label><br />
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+}
+
+
+
+
+
+

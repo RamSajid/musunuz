@@ -1,0 +1,41 @@
+﻿@{
+    //Layout = null;
+}
+
+
+    <div style="margin-top:50px ; margin-bottom:50px" class="row">
+
+        <div class="col-md-7"> </div>
+
+        <div class="col-md-4" style="margin-top: 10px; background-color: #D4D8D1">
+            <h3 style="margin-left: 55px; margin-bottom: 30px; color: #577492">Register Your Account</h3>
+
+            <fieldset style="margin-left:25px ; margin-right:25px ; margin-bottom:25px">
+
+                <form action="~/Home/userSignUp" method="post" enctype="multipart/form-data">
+                @*<div class="row">*@
+                <div class="form-group has-error">
+                    <input class="form-control input-lg" placeholder="First Name" name="fN" type="text">
+                </div>
+                <div class="form-group has-success">
+                    <input class="form-control input-lg" placeholder="Last Name" name="lN" value="" type="text">
+                </div>
+                @*</div>*@
+                <div class="form-group has-error">
+                    <input class="form-control input-lg" placeholder="E-mail Address" name="email" type="text">
+                </div>
+                <div class="form-group has-success">
+                    <input class="form-control input-lg" placeholder="Password" name="password" value="" type="password">
+                </div>
+                    <div class="form-group has-success">
+                        Choose Your Profile Picture : <input type="file" name="f1" />
+                    </div>
+                <input class="btn btn-lg btn-primary btn-block" value="Get Register" type="submit">
+                    </form>
+            </fieldset>
+        </div>
+        <div class="col-md-1"> </div>
+
+    </div>
+
+  

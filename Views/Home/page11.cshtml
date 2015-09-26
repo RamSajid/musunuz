@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .modal-content{
+        width:600px !important ;
+        margin: 30px auto !important ;
+    }
+    </style>
+
+<div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-content">
+        </div>
+    </div>
+
+<div id="lPPPP">
+
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
+        $('#lPPPP').load('page1');
+    });
+    </script>

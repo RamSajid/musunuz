@@ -1,0 +1,104 @@
+﻿@{
+    int id = ViewBag.userId;
+    //Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<script>
+                $(document).ready(function () {
+                    $('#uId').hide();
+                });
+</script>
+
+<div class="panel-body row" style="margin-top:10% ; margin-left:10%">
+    <h3 style="margin-left: 170px; color: #577492">Create Your Store</h3>
+    <fieldset>
+        <div style="text-align:center; font-size:25px" id="missing"></div>
+        <form action="/Admin/addStore" method="post" enctype="multipart/form-data">
+            <div class="col-lg-12 col-lg-5" style="margin-left:70px">
+                <div class="form-group has-error">
+                    <input class="form-control input-lg" value="@id" id="uId" name="userId" type="text" style="margin-bottom:10px">
+                </div>
+
+                <div class="form-group has-error">
+                    <input class="form-control input-lg" placeholder="Store Name" id="sN" name="storeName" type="text" style="margin-bottom:10px">
+                </div>
+                <div class="form-group has-error">
+                    <input class="form-control input-lg" placeholder="Market Name" id="mN" name="marketName" type="text" style="margin-bottom:10px">
+                </div>
+                <div class="form-group has-error">
+                    <input class="form-control input-lg" placeholder="City Name" id="c" name="city" type="text" style="margin-bottom:10px">
+                </div>
+                <div class="form-group has-success">
+                    <input class="form-control input-lg" placeholder="Street Address" id="sA" name="address" value="" type="text" style="margin-bottom:10px">
+                </div>
+
+                <div class="form-group has-success">
+                    <input class="form-control input-lg" placeholder="ZIP Code" name="zip" id="zip" value="" type="text" style="margin-bottom:10px">
+                </div>
+                <div class="form-group">
+                    <input class="form-control input-lg" placeholder="Postal Address" id="pA" name="postalAddress" value="" type="text" style="margin-bottom:10px">
+                </div>
+                Store Picture  <input type="file" name="f1" id="sPic" /> <br style="margin-bottom:10px" />
+                Visiting Card Picture  <input type="file" name="f2" id="vPic" /> <br style="margin-bottom:10px" />
+                <div class="form-group">
+                    <textarea class="form-control input-lg" rows="8" cols="100" id="des" placeholder="Your Store Description" name="description" style="margin-bottom:10px"> </textarea>
+                </div>
+                <input class="btn btn-lg btn-primary btn-block" value="Create Store" id="addStoreB" type="submit">
+            </div>
+        </form>
+            @*<script>
+
+    $(document).ready(function () {
+
+        $('#addStoreB').click(function () {
+            alert("clickedd");
+            var uId = $('#uId').val();
+            var storeName = $('#sN').val();
+            var marketName = $('#mN').val();
+            var city = $('#c').val();
+            var stretAddress = $('#sA').val();
+            var postalAddress = $('#pA').val();
+            var zip = $('#zip').val();
+            var description = $('#des').val();
+            var p1 = $('#sPic').val();
+            alert(p1);
+            var p2 = $('#vPic').val();
+            alert(p2);
+            $.getJSON("/Admin/addStore?uId=" + uId + "&" + "storeName=" + storeName + "&" + "marketName=" + marketName + "&" + "city=" + city + "&" + "stretAddress=" + stretAddress + "&" + "postalAddress=" + postalAddress + "&" + "zip=" + zip + "&" + "description=" + description + "&" + "p1=" + p1 + "&" + "p2=" + p2, function (data) {
+
+                if (data) {
+                    $('#userM').empty();
+                    $('#userM').load('/Admin/viewStore/' + data);
+                }
+            });
+
+        });
+
+    });
+            </script>*@
+
+    </fieldset>
+</div>
+
+@*<script>
+          $(document).ready(function () {
+              $('addStore').click(function () {
+                  var s = $('#sN').text();
+                  var m = $('#mN').text();
+                  var ci = $('#c').text();
+                  var st = $('#sA').text();
+                  var z = $('#zip').text();
+                  var pos = $('#pA').text();
+                  var d = $('#des').text();
+                  if (s.length == 0 || m.length == 0 || ci.length == 0 || st.length == 0 || z.length == 0 || pos.length == 0 ||
+                      d.length == 0) {
+                      $('#missing').show();
+                      $('#missing').append('<p>All fields are required</p>')
+                  }
+                  else {
+
+                  }
+              });
+
+          });
+    </script>*@

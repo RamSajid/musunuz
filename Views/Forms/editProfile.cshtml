@@ -1,0 +1,69 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>editProfile</title>
+    <script src="~/jsp/jquery-2.1.4.min.js"></script>
+    <link href="~/bootStrap/bootstrap.css" rel="stylesheet" />
+    <script src="~/bootStrap/bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#editUName').on('click', function () {
+                $('#divForLoadEdit').load('newName');
+            });
+            $('#editUPassword').on('click', function () {
+                $('#divForLoadEdit').load('newPassword');
+            });
+            $('#editUImage').on('click', function () {
+                $('#divForLoadEdit').load('newImage');
+            });
+        });
+       
+        
+    </script>
+</head>
+<body style="background-color:aliceblue">
+    <div  class="container-fluid">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="row"></div>
+                <div class="row" style="background-color:black;margin-top:50px">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <h3 style="color:ActiveBorder">Profile Description</h3>
+                    </div>
+                     <div class="col-md-3"></div>
+                </div>
+                <div class="row" style="margin-top:15px">
+                    <div class="col-md-4"><strong>UserName</strong></div>
+                    <div class="col-md-4">asmat</div>
+                    <div class="col-md-4" id="editUName" style="margin-left:0px"><button style="margin-left:150px">Edit</button></div>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <div class="col-md-4"><strong>Password</strong></div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4" id="editUPassword"><button style="margin-left:150px">Edit</button></div>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <div class="col-md-4"><strong>Profile Picture</strong></div>
+                    <div class="col-md-4">Image</div>
+                    <div class="col-md-4" id="editUImage"><button style="margin-left:150px">Edit</button></div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row" style="margin-top:200px">
+            <div class="col-md-3"></div>
+            <div class="col-md-6"  id="divForLoadEdit" >
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</body>
+</html>

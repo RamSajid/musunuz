@@ -1,0 +1,437 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/jQuery/jquery-1.9.1.min.js"></script>
+    <script src="~/jQuery/jquery-2.1.4.js"></script>
+
+    <title>mainScreen</title>
+</head>
+<body>
+    <div style="height:18% ; width:100% ; background-color:#490000" class="row">
+        <div class="col-md-2" style="margin-top:1%">
+            <table id="profileOptions">
+                <tr>
+                    <td>
+                        <a href="~/Admin/merchantProfile" > <img src="" height="70" width="70" /> </a>
+                    </td>
+                    <td style="color:white ; font-size:small ; padding-left:10px">
+                        <a href="~/Admin/merchantProfile"> <b style="color:white ; font-size:medium"> UserName </b> </a> <br />
+                        Email Id
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4" style="margin-top:4%">
+            <form role="search" class="">
+                <div class="form-group">
+                    <input id="Search" type="text" placeholder="Search" class="form-control">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-1" style="margin-top:4%">
+            <input type="submit" value="Search" style="font-size:large; color: #ffffff; background-color: #d5caaf " />
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-3" style="margin-top:3%">
+            <a href="~/Home/mainScreen" style="font-size:xx-large; color: #ffffff; font-weight:800"> iReviewing </a>
+        </div>
+    </div>
+
+    @*<div class="row" style="background-color: #ffffff ; color:black ; height:5% ; margin-top:10px">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-2">
+            <a href="" style="font-weight:600 ; color:black" id="city"> Cities  </a>
+        </div>
+        <div class="col-md-2">
+            <a href="" style="font-weight: 600; color: black" id="market"> Markets  </a>
+        </div>
+        <div class="col-md-2">
+            <a href="" style="font-weight: 600; color: black" id="category"> Categories  </a>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+    <div class="row" id="showCity">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6" style="background-color: #d5caaf">
+            @for (var i = 0; i < 15; i++)
+            {
+                <div class="row">
+
+                    @for (var j = 0; j < 4 && i < 15; j++, i++)
+                    {
+                        <div class="col-md-3">
+                            <a href="~/Home/city" style="color:black"> City @i </a>
+                        </div>
+                        if (j == 3)
+                        {
+                            i--;
+                        }
+                    }
+
+                </div>
+            }
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+
+    <div class="row" id="showMarket" style="border-radius:20px">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6" style="background-color: #d5caaf">
+            @for (var i = 0; i < 15; i++)
+            {
+                <div class="row">
+                    @for (var j = 0; j < 4 && i < 15; j++, i++)
+                    {
+                        <div class="col-md-3">
+                            <a href="~/Home/market" style="color:black"> Market @i </a>
+                        </div>
+                        if (j == 3)
+                        {
+                            i--;
+                        }
+                    }
+
+                </div>
+            }
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+
+    <div class="row" id="showCategory">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6" style="background-color: #d5caaf">
+            <table>
+                @for (var i = 0; i < 15; i++)
+                {
+                    <tr style="padding-bottom:10px">
+                        @for (var c = 0; c < 2 && i < 15; c++, i++)
+                        {
+                            <td style="font-weight:500">
+                                <a href="~/Home/category" style="color:black"> Category @i </a>
+                            </td>
+
+                            <td style="padding-right:12px ; padding-left:7px">
+                                <ul style="list-style:none">
+                                    @for (var k = 0; k < 3; k++)
+                                    {
+                                        <li style="list-style:none">
+                                            <a href="~/Home/category" style="color:black"> Sub Category @k </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </td>
+
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>*@
+
+    <div class="row" style="margin-top:40px">
+        <div class="col-md-2"> </div>
+        <div class="col-md-8">
+            <div class="container" style="width: 95%; height:5% ">
+                <nav role="navigation" class="navbar" style="background-color: #d5caaf">
+                    <div id="navbarCollapse" class="collapse navbar-collapse" style="margin-top:10px">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="~/Home/mainScreen" style="color:black"> Home </a>
+                            </li>
+                            <li class="dropdown" id="revL">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="color:black"> Reviews </a>
+                                <ul role="menu" class="dropdown-menu" style="list-style: none; background-color: #d5caaf" id="revList">
+                                    <li style="list-style:none">
+                                        <a href="~/Home/topReviewers" style="color:black"> Top Reviewers </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" id="rateL">
+                                <a href="#" style="color:black" data-toggle="dropdown" class="dropdown-toggle"> Rating </a>
+                                <ul role="menu" class="dropdown-menu" style="list-style: none; background-color: #d5caaf" id="rateList">
+                                    <li style="list-style:none">
+                                        <a href="~/Home/highestRatedStores" style="color:black"> Highest Rated Stores </a>
+                                    </li>
+                                    <li style="list-style:none">
+                                        <a href="~/Home/lowestRatedStores" style="color:black"> Lowest Rated Stores </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" id="comL">
+                                <a style="color:black" href="#" data-toggle="dropdown" class="dropdown-toggle"> Community </a>
+                                <ul role="menu" class="dropdown-menu" style="list-style: none; background-color: #d5caaf" id="comList">
+                                    <li style="list-style:none">
+                                        <a href="~/Home/TnC" style="color:black"> Terms & Conditions</a>
+                                    </li>
+                                    @*<li style="list-style:none">
+                                        <a href="" style="color:black"> Site Usage </a>
+                                    </li>*@
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="~/Admin/createStore" style="color:black"> Add Store </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="~/Home/mainScreen" style="color:black"> Write a Review </a>
+                            </li>
+                            <li class="dropdown" id="changeL">
+                                <a style="color:black" href="" data-toggle="dropdown" class="dropdown-toggle"> Change Password </a>
+                                <ul role="menu" class="dropdown-menu" style="list-style: none; background-color: #d5caaf" id="changeList">
+                                    <li>
+                                        <form>
+                                            <div style="width:400px">
+                                                <div class="form-group" style="width:300px ; margin-left:50px">
+                                                    <label for="username" class="control-label">Current Password</label>
+                                                    <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username">
+                                                    <span class="help-block"></span>
+                                                </div>
+                                                <div class="form-group" style="width:300px ; margin-left:50px">
+                                                    <label for="password" class="control-label">New Password</label>
+                                                    <input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password">
+                                                    <span class="help-block"></span>
+                                                </div>
+                                                <button type="submit" style="width:200px ; margin-left:100px" class="btn btn-success btn-block">Login</button>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" id="signL">
+                                <a style="color:black" href="~/Home/userProfile" data-toggle="dropdown" class="dropdown-toggle"> Sign Out </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 col-md-2" id="loadSB" style="background-color:#d5caaf">
+
+        </div>
+
+        <div class="col-md-8" style="margin-left:35px">
+            <a href="~/Home/tagReviews" style="font-weight:500 ; margin-left:460px ; margin-top:20px ; margin-bottom:20px"> Store doesn't exist ? Write its Review Here </a>
+            @RenderBody() ;
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+
+
+    <div style="background-color:#490000 ; color:#d5caaf ; font-weight:500 ; font-size:small ; margin-top:50px">
+        <br /> Copyrights to website Owner <br />
+    </div>
+
+</body>
+</html>
+
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
+        $('#loadSB').show();
+        $('#loadSB').load('sideBar');
+        $('#showCity').hide();
+        $('#showMarket').hide();
+        $('#showCategory').hide();
+        $('#revList').hide();
+        $('#rateList').hide();
+        $('#comList').hide();
+        $('#signList').hide();
+        $('#accList').hide();
+
+        $('#city').mouseover(function () {
+            $('#showMarket').hide();
+            $('#showCategory').hide();
+            $('#showCity').show();
+        });
+
+        $('#showCity').mouseover(function () {
+            $('#showMarket').hide();
+            $('#showCategory').hide();
+            $('#showCity').show();
+        });
+
+        $('#city').mouseout(function () {
+            $('#showCity').hide();
+        });
+
+        $('#showCity').mouseout(function () {
+            $('#showCity').hide();
+        });
+
+
+
+
+        $('#market').mouseover(function () {
+            $('#showCategory').hide();
+            $('#showCity').hide();
+            $('#showMarket').show();
+        });
+
+        $('#showMarket').mouseover(function () {
+            $('#showCategory').hide();
+            $('#showCity').hide();
+            $('#showMarket').show();
+        });
+
+        $('#market').mouseout(function () {
+            $('#showMarket').hide();
+        });
+
+        $('#showMarket').mouseout(function () {
+            $('#showMarket').hide();
+        });
+
+
+
+
+        $('#category').mouseover(function () {
+            $('#showCity').hide();
+            $('#showMarket').hide();
+            $('#showCategory').show();
+        });
+
+        $('#showCategory').mouseover(function () {
+            $('#showCity').hide();
+            $('#showMarket').hide();
+            $('#showCategory').show();
+        });
+
+        $('#category').mouseout(function () {
+            $('#showCategory').hide();
+        });
+
+        $('#showCategory').mouseout(function () {
+            $('#showCategory').hide();
+        });
+
+
+
+        $('#revL').mouseover(function () {
+            $('#revList').show();
+        });
+
+        $('#revList').mouseover(function () {
+            $('#revList').show();
+        });
+
+        $('#revL').mouseout(function () {
+            $('#revList').hide();
+        });
+
+        $('#revList').mouseout(function () {
+            $('#revList').hide();
+        });
+
+
+
+        $('#rateL').mouseover(function () {
+            $('#rateList').show();
+        });
+
+        $('#rateList').mouseover(function () {
+            $('#rateList').show();
+        });
+
+        $('#rateL').mouseout(function () {
+            $('#rateList').hide();
+        });
+
+        $('#rateList').mouseout(function () {
+            $('#rateList').hide();
+        });
+
+
+
+        $('#comL').mouseover(function () {
+            $('#comList').show();
+        });
+
+        $('#comList').mouseover(function () {
+            $('#comList').show();
+        });
+
+        $('#comL').mouseout(function () {
+            $('#comList').hide();
+        });
+
+        $('#comList').mouseout(function () {
+            $('#comList').hide();
+        });
+
+
+
+        $('#signL').mouseover(function () {
+            $('#signList').show();
+        });
+
+        $('#signList').mouseover(function () {
+            $('#signList').show();
+        });
+
+        $('#signL').mouseout(function () {
+            $('#signList').hide();
+        });
+
+        $('#signList').mouseout(function () {
+            $('#signList').hide();
+        });
+
+
+
+        $('#changeL').mouseover(function () {
+            $('#changeList').show();
+        });
+
+        $('#changeList').mouseover(function () {
+            $('#changeList').show();
+        });
+
+        $('#changeL').mouseout(function () {
+            $('#changeList').hide();
+        });
+
+        $('#changeList').mouseout(function () {
+            $('#changeList').hide();
+        });
+
+    });
+
+</script>

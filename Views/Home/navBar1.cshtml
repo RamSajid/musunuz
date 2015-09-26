@@ -1,0 +1,346 @@
+﻿@{
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    User uIn = (User)(Session["userIn"]);
+}
+
+
+<div>
+    <nav class="navbar navbar-inverse" role="navigation">
+
+        <h2 class="navbar-header"> <a href="/Home/page1" style="margin-top:1%; color: #fff;"> iReviewing </a> </h2>
+        <div>
+        <b class="navbar-form" style="">
+            <input style="margin-left: 13%; margin-top: 1%; width: 300px" name="Search" id="searchStr" type="text" placeholder="Search Here" class="form-control" />
+            <input type="button" id="searchBtn" class="btn btn-info" value="Search" style="margin-top:1% ; margin-left:1% ; font-size:large ; color: #fff" />
+        </b>
+
+            <script>
+
+            $(document).ready(function () {
+
+                $('#searchBtn').click(function () {
+
+                    var str = $('#searchStr').val();
+                    
+                    $.getJSON("/Home/searchBarResultsStoress?searchStr=" + str, function (data) {
+                        if (data == 0) {
+                            $('#userM').hide();
+                            $('#sideBar').show();
+                            $('#loadPage').empty();
+                            $('#loadPage').append('<h1 style="color: #577492' + ' ; margin-top:' + 20 + '% ; margin-left: ' + 20 + '%"> No Search Results Found </h1>' +
+        '<p style="color: #67655D; margin-left: ' + 20 + '%"> write any market name , store name or category to get results </p>');
+                        }
+
+                        else if (data == 1) {
+                            $('#userM').hide();
+                            $('#sideBar').show();
+                            $('#loadPage').load('searchBarResultsStores');
+                        }
+
+                    });
+
+                });
+
+            });
+            </script>
+
+
+            <ul class="nav navbar-nav navbar-right" style=" margin-top:1%">
+                    <li class="dropdown">
+                        <a id="hC" style="color: #fff"> Home </a>
+                        <script>
+                            $(document).ready(function () {
+                                $('#hC').click(function () {
+                                    $('#userM').hide();
+                                    $('#sideBar').show();
+                                    $('#loadPage').empty();
+                                    $('#loadPage').show();
+                                    $('#loadPage').load('mainScreen');
+                                });
+                            });
+                        </script>
+                    </li>
+                    <li class="dropdown" id="comL">
+                        <a style="color: #fff" href="#" data-toggle="dropdown" class="dropdown-toggle"> Community </a>
+                        <ul role="menu" class="dropdown-menu" style="list-style: none; background-color: #D4D8D1" id="comList">
+                            <li style="list-style:none">
+                                <a id="tcC" style="color: #272424"> Terms & Conditions</a>
+                                <script>
+                                    $(document).ready(function () {
+                                        $('#tcC').click(function () {
+                                            $('#userM').hide();
+                                            $('#sideBar').show();
+                                            $('#loadPage').empty();
+                                            $('#loadPage').show();
+                                            $('#loadPage').load('TnC');
+                                        });
+                                    });
+                                </script>
+                            </li>
+                            <li style="list-style:none">
+                                <a id="tRC" style="color: #272424"> Top Reviewers </a>
+                                <script>
+                                    $(document).ready(function () {
+                                        $('#tRC').click(function () {
+                                            $('#userM').hide();
+                                            $('#sideBar').show();
+                                            $('#loadPage').empty();
+                                            $('#loadPage').show();
+                                            $('#loadPage').load('topReviewers');
+                                        });
+                                    });
+                                </script>
+                            </li>
+                            <li style="list-style:none">
+                                <a id="high" style="color: #272424"> Highest Rated Stores  </a>
+                                <script>
+                                    $(document).ready(function () {
+                                        $('#high').click(function () {
+                                            $('#userM').hide();
+                                            $('#sideBar').show();
+                                            $('#loadPage').empty();
+                                            $('#loadPage').show();
+                                            $('#loadPage').load('highestRatedStores');
+                                        });
+                                    });
+                                </script>
+                            </li>
+                            <li style="list-style:none">
+                                <a id="lRSC" style="color: #272424"> Lowest Rated Stores </a>
+                                <script>
+                                    $(document).ready(function () {
+                                        $('#lRSC').click(function () {
+                                            $('#userM').hide();
+                                            $('#sideBar').show();
+                                            $('#loadPage').empty();
+                                            $('#loadPage').show();
+                                            $('#loadPage').load('lowestRatedStores');
+                                        });
+                                    });
+                                </script>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="aL">
+                        @if (Session["userIn"] != null && uIn.merchantOrUser.Equals("merchant"))
+                        {
+                            <a id="mAS" style="color: #fff" data-toggle="dropdown" class="dropdown-toggle"> Add Store </a>
+                            <script>
+                                $(document).ready(function () {
+                                    $('#mAS').click(function () {
+                                        $('#sideBar').hide();
+                                        $('#userM').empty();
+                                        $('#userM').show();
+                                        $('#userM').load('/Admin/createStore/@uIn.userId');
+                                    });
+                                });
+                            </script>
+                        }
+                        else
+                        {
+                            <a href="#" style="color: #fff" data-toggle="dropdown" class="dropdown-toggle"> Add Store </a>
+                            <ul role="menu" class="dropdown-menu" style="list-style: none; background-color: #D4D8D1" id="aList">
+                                <li style="list-style:none">
+                                    <a id="" style="color: #272424"> Sign In as Merchant </a>
+                                </li>
+                            </ul>
+                        }
+                    </li>
+
+                    @if (Session["userIn"] == null && Session["merchantIn"] == null)
+                    {
+                        <li class="dropdown" id="signL">
+                            <a style="color: #fff" href="~/Home/signIn" data-toggle="dropdown" class="dropdown-toggle"> Sign In </a>
+                            <ul role="menu" class="dropdown-menu" style="list-style: none; background-color: #D4D8D1" id="signList">
+                                <li style="list-style:none">
+                                    <a id="sIn" style="color: #272424"> Sign In </a>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#sIn').click(function () {
+                                                $('#userM').show();
+                                                $('#sideBar').hide();
+                                                $('#userM').load('signIn');
+                                            });
+                                        });
+                                    </script>
+                                </li>
+                                <li style="list-style:none">
+                                    <a id="sUp" style="color: #272424"> Sign Up as User </a>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#sUp').click(function () {
+                                                $('#userM').show();
+                                                $('#sideBar').hide();
+                                                $('#userM').load('signUp');
+                                            });
+                                        });
+                                    </script>
+                                </li>
+                                <li style="list-style:none">
+                                    <a id="sUpM" style="color: #272424"> Sign Up as merchant </a>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#sUpM').click(function () {
+                                                $('#userM').show();
+                                                $('#sideBar').hide();
+                                                $('#userM').load('/Admin/mSignUp');
+                                            });
+                                        });
+                                    </script>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    else if (Session["userIn"] != null)
+                    {
+                        <li class="dropdown" id="signL">
+                            <a> <img src="@uIn.userProfilePic" height="30" width="30" /> </a>
+                            <ul role="menu" class="dropdown-menu" style="list-style: none; background-color: #D4D8D1" id="signList">
+                                <li style="list-style:none">
+                                    <a id="imC" style="color: #272424"> @uIn.FirstName  </a>
+                                </li>
+                                <li style="list-style:none">
+                                    <a id="changePass" style="color: #272424"> Change Password </a>
+                                </li>
+                                <li style="list-style:none">
+                                    <a id="logout" style="color: #272424"> Logout </a>
+
+                                    @Scripts.Render("~/bundles/jquery")
+                                    <script>
+
+                                        $(document).ready(function () {
+
+                                            $('#logout').click(function () {
+                                                var id = @uIn.userId
+                                                $.getJSON("/Home/logoutUser?uId=" + id, function (data) {
+                                                    if (data == 0) {
+                                                        $('#LNB').empty();
+                                                        $('#LNB').show();
+                                                        $('#LNB').load('navBar1');
+                                                        $('#sideBar').show();
+                                                        $('#userM').hide();
+                                                        $('#loadPage').empty();
+                                                        $('#loadPage').show();
+                                                        $('#loadPage').load('mainScreen');
+                                                    }
+                                                });
+
+                                            });
+
+                                        });
+                                    </script>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#imC').click(function () {
+                                                $('#sideBar').hide();
+                                                $('#userM').empty();
+                                                $('#userM').show();
+                                                $('#userM').load('userProfile/@uIn.userId');
+                                            });
+                                        });
+                                    </script>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    <li> <a style="margin-left:30px"> </a> </li>
+                </ul>
+            
+    </div>
+</nav>
+</div>
+
+<div style="margin-top:3% ; margin-bottom:2%" class="row">
+    <div class="col-md-7">
+    </div>
+    <div class="col-md-4">
+
+        <a id="tagR" data-toggle="dropdown" class="dropdown-toggle"> write review to the store that doesn't exist here </a>
+
+        <script>
+            $(document).ready(function () {
+                $('#tagR').click(function () {
+                    $('#userM').hide();
+                    $('#sideBar').show();
+                    $('#loadPage').empty();
+                    $('#loadPage').show();
+                    $('#loadPage').load('tagReviews/0');
+                });
+            });
+        </script>
+
+    </div>
+</div>
+
+
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
+
+        $('#comList').hide();
+        $('#signList').hide();
+        $('#aList').hide();
+
+
+        $('#comL').mouseover(function () {
+            $('#comList').show();
+        });
+
+        $('#comList').mouseover(function () {
+            $('#comList').show();
+        });
+
+        $('#comL').mouseout(function () {
+            $('#comList').hide();
+        });
+
+        $('#comList').mouseout(function () {
+            $('#comList').hide();
+        });
+
+
+
+        $('#signL').mouseover(function () {
+            $('#signList').show();
+        });
+
+        $('#signList').mouseover(function () {
+            $('#signList').show();
+        });
+
+        $('#signL').mouseout(function () {
+            $('#signList').hide();
+        });
+
+        $('#signList').mouseout(function () {
+            $('#signList').hide();
+        });
+
+
+        $('#aL').mouseover(function () {
+            $('#aList').show();
+        });
+
+        $('#aList').mouseover(function () {
+            $('#aList').show();
+        });
+
+        $('#aL').mouseout(function () {
+            $('#aList').hide();
+        });
+
+        $('#aList').mouseout(function () {
+            $('#aList').hide();
+        });
+
+        $('#changePass').click(function () {
+            $('#sideBar').hide();
+            $('#userM').show();
+            $('#userM').empty();
+            $('#userM').load('changePassword');
+        });
+
+    });
+
+</script>
