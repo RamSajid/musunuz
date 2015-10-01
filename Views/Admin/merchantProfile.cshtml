@@ -15,8 +15,10 @@
         <div style="margin-left:10px">
 
             <a id="addNS" style="color: black; font-size: medium; font-weight: 500"> Create New Store </a>
+            @Scripts.Render("~/bundles/jquery")
             <script>
-                $(document).ready(function () {
+
+                $(document).ready(function() {
                     $('#addNS').click(function () {
                         $('#lDiv').hide();
                         $('#ssDiv').empty();
@@ -51,7 +53,7 @@
 
                     @if(mL.Count == 0)
                     {
-                        <a style="color: black"> You haven't created any store yet </a> <br />
+                        <a style="color:black"> You haven't created any store yet </a> <br />
                     }
                 </div>
 
